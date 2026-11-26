@@ -35,6 +35,7 @@ $scenarioJson = $scenarioData | ConvertTo-Json -Depth 8
 [IO.File]::WriteAllText((Join-Path $qaRoot 'scenario.json'), $scenarioJson, [Text.UTF8Encoding]::new($false))
 $arguments = @('-ukubola-qa-root', ('"' + $qaRoot + '"'), '-screen-width', $ScreenWidth.ToString(), '-screen-height', $ScreenHeight.ToString(), '-screen-fullscreen', '0', '-force-d3d11', '-logFile', ('"' + (Join-Path $qaRoot 'Player.log') + '"'))
 $player = Start-Process -FilePath $Executable -ArgumentList $arguments -WindowStyle Hidden -PassThru
+@{ executable=$Executable; executableSha256=(Get-FileHash -LiteralPath $Executable -Algorithm SHA256).Hash.ToLowerInvariant(); processId=$player.Id; utc=[DateTime]::UtcNow.ToString('O'); scenarioSha256=(Get-FileHash -LiteralPath (Join-Path $qaRoot 'scenario.json') -Algorithm SHA256).Hash.ToLowerInvariant() } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $qaRoot 'launch.json') -Encoding utf8
 Write-Output "QA process $($player.Id): $qaRoot"
 $deadline = [DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
 while (-not $player.HasExited) {
@@ -47,6 +48,9 @@ while (-not $player.HasExited) {
     $player.Refresh()
 }
 $resultPath = Join-Path $qaRoot 'run-result.json'
+$launchEvidence=Get-Content -LiteralPath (Join-Path $qaRoot 'launch.json') -Raw | ConvertFrom-Json
+$launchEvidence | Add-Member -NotePropertyName exitCode -NotePropertyValue $player.ExitCode -Force
+$launchEvidence | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $qaRoot 'launch.json') -Encoding utf8
 if (-not (Test-Path -LiteralPath $resultPath)) { throw "Player exited $($player.ExitCode) without QA report: $qaRoot" }
 $result = Get-Content -LiteralPath $resultPath -Raw | ConvertFrom-Json
 $result | Select-Object success,scene,quality,outputWidth,outputHeight,windowWidth,windowHeight,internalWidth,internalHeight,behaviorChecks,error | ConvertTo-Json -Depth 4
@@ -58,8 +62,11 @@ $validationPath = Join-Path $qaRoot 'capture-validation.json'
 python (Join-Path $PSScriptRoot 'Validate-UkubolaCaptures.py') $resultPath | Set-Content -LiteralPath $validationPath -Encoding utf8
 if ($LASTEXITCODE -ne 0) { throw 'Blank or missing captures rejected; inspect the retained player evidence.' }
 Write-Output "Validated $($result.captures.Count) real captures: $validationPath"
+$launchEvidence | Add-Member -NotePropertyName validationPassed -NotePropertyValue $true -Force
+$launchEvidence | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $qaRoot 'launch.json') -Encoding utf8
 if ($ReportPath) {
     $reportDirectory = Split-Path $ReportPath -Parent
     New-Item -ItemType Directory -Path $reportDirectory -Force | Out-Null
     Copy-Item -LiteralPath $resultPath -Destination $ReportPath
 }
+exit 0

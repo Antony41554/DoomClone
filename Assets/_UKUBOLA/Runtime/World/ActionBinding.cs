@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using Ukubola.Persistence;
 
@@ -10,6 +11,7 @@ namespace Ukubola.World
         public WorldVerb verb;
         public float value;
         public string conditionFlag;
+        public string[] requiredFlags=Array.Empty<string>();
     }
     public sealed class ActionBinding : PersistentBehaviour
     {
@@ -34,7 +36,12 @@ namespace Ukubola.World
         public void ValidateBinding()
         {
             if (!source || actions == null || actions.Length == 0) throw new InvalidOperationException("Disconnected action binding: " + name);
-            foreach (var a in actions) if (a == null || !a.target || !(a.target is IWorldActionTarget target) || !target.Accepts(a.verb) || !MissionDefinition.Finite(a.value)) throw new InvalidOperationException("Invalid action destination: " + name);
+            foreach (var a in actions)
+            {
+                if (a == null || !a.target || !(a.target is IWorldActionTarget target) || !target.Accepts(a.verb) || !MissionDefinition.Finite(a.value)) throw new InvalidOperationException("Invalid action destination: " + name);
+                if(a.requiredFlags!=null&&(a.requiredFlags.Length>16||a.requiredFlags.Any(string.IsNullOrWhiteSpace)||a.requiredFlags.Distinct(StringComparer.Ordinal).Count()!=a.requiredFlags.Length))throw new InvalidOperationException("Invalid action conditions: "+name);
+                if(a.target is IWorldActionParameters parameters)parameters.ValidateAction(a.verb,a.value);
+            }
         }
         private void Handle(WorldSignal incoming)
         {
@@ -46,6 +53,7 @@ namespace Ukubola.World
                 foreach (var a in actions)
                 {
                     if (!string.IsNullOrEmpty(a.conditionFlag) && (!Context || !Context.Flag(a.conditionFlag))) continue;
+                    if(a.requiredFlags!=null&&a.requiredFlags.Any(flag=>!Context||!Context.Flag(flag)))continue;
                     ((IWorldActionTarget)a.target).Execute(a.verb, a.value);
                     executed=true;
                 }

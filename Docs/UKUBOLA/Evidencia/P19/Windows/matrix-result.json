@@ -1,0 +1,43 @@
+{
+  "kind": "Standalone offscreen output and UI at requested dimensions; physical window recorded separately. Scene runtime checks; static timing is not P26 performance acceptance",
+  "cases": [
+    {
+      "report": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\preview-final-f147333044ef49d8bbc2b0c00addcb89\\matrix\\Low_720p.json",
+      "outputWidth": 1280,
+      "windowWidth": 1280,
+      "name": "Low_720p",
+      "outputHeight": 720,
+      "success": true,
+      "windowHeight": 720
+    },
+    {
+      "report": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\preview-final-f147333044ef49d8bbc2b0c00addcb89\\matrix\\Medium_1080p.json",
+      "outputWidth": 1920,
+      "windowWidth": 1920,
+      "name": "Medium_1080p",
+      "outputHeight": 1080,
+      "success": true,
+      "windowHeight": 1080
+    },
+    {
+      "report": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\preview-final-f147333044ef49d8bbc2b0c00addcb89\\matrix\\High_1440p.json",
+      "outputWidth": 2560,
+      "windowWidth": 1920,
+      "name": "High_1440p",
+      "outputHeight": 1440,
+      "success": true,
+      "windowHeight": 1080
+    },
+    {
+      "report": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\preview-final-f147333044ef49d8bbc2b0c00addcb89\\matrix\\Medium_4x3.json",
+      "outputWidth": 1280,
+      "windowWidth": 1280,
+      "name": "Medium_4x3",
+      "outputHeight": 960,
+      "success": true,
+      "windowHeight": 960
+    }
+  ],
+  "scene": "OutpostSlice",
+  "success": true
+}

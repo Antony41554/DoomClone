@@ -7,7 +7,7 @@ using Ukubola.Persistence;
 namespace Ukubola.World
 {
     [DefaultExecutionOrder(-200)]
-    public sealed class MissionContext : MonoBehaviour
+    public sealed partial class MissionContext : MonoBehaviour
     {
         [SerializeField] private MissionDefinition definition;
         private readonly Dictionary<string, IPersistentEntity> entities = new Dictionary<string, IPersistentEntity>(StringComparer.Ordinal);
@@ -65,6 +65,7 @@ namespace Ukubola.World
             void Apply(EntitySnapshot[] snapshots)
             {
                 foreach (var state in snapshots.OrderBy(s => entities[s.id].RestoreOrder).ThenBy(s => s.id, StringComparer.Ordinal)) entities[state.id].RestoreEntity(state);
+                FinishEntityRestore();
             }
             try { Apply(states); }
             catch { Apply(previous); throw; }

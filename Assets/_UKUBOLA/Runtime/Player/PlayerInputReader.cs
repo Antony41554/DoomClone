@@ -12,12 +12,19 @@ namespace Ukubola.Player
         private InputActionMap gameplay;
         private InputAction move, look, run, fire, pause;
         private bool captured;
+        public IPlayerCommands QaCommands{get;private set;}
+        public bool HasQaCommands=>QaCommands!=null&&QaCommands.Active;
+        public void SetQaCommands(IPlayerCommands source)
+        {
+            if(source!=null&&!QaEnvironment.Active)throw new InvalidOperationException("Recorded input requires isolated QA storage.");
+            QaCommands=source;
+        }
         public InputActionAsset Actions => actions;
         public bool IsReady => gameplay != null && gameplay.enabled;
-        public bool Captured => captured && Cursor.lockState == CursorLockMode.Locked;
-        public Vector2 Move => Captured && IsReady ? move.ReadValue<Vector2>() : Vector2.zero;
-        public Vector2 Look => Captured && IsReady ? look.ReadValue<Vector2>() : Vector2.zero;
-        public bool Run => Captured && IsReady && run.IsPressed();
+        public bool Captured => HasQaCommands || captured && Cursor.lockState == CursorLockMode.Locked;
+        public Vector2 Move => HasQaCommands?QaCommands.Move:Captured && IsReady ? move.ReadValue<Vector2>() : Vector2.zero;
+        public Vector2 Look => HasQaCommands?QaCommands.Look:Captured && IsReady ? look.ReadValue<Vector2>() : Vector2.zero;
+        public bool Run => HasQaCommands?QaCommands.Run:Captured && IsReady && run.IsPressed();
 
         public void Configure(InputActionAsset asset) => actions = asset;
 
@@ -47,6 +54,7 @@ namespace Ukubola.Player
         // Called once per Update by PlayerMotor. First capture frame ignores mouse delta.
         public bool PollCapture()
         {
+            if(HasQaCommands)return true;
             if (!IsReady || !Application.isFocused) { ReleaseCursor(); return false; }
             if (pause.WasPressedThisFrame()) { ReleaseCursor(); return false; }
             if (captured && Cursor.lockState != CursorLockMode.Locked) ReleaseCursor();

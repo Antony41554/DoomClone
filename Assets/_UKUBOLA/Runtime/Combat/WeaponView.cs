@@ -11,6 +11,7 @@ namespace Ukubola.Combat
         public RawImage Image => image;
         private Ukubola.Rendering.IWeaponPresentation alternative;
         public void SetPresentation(Ukubola.Rendering.IWeaponPresentation value) { alternative=value; if(image && value!=null)image.enabled=false; }
+        public void ResetTransient(){fireAt=-10;if(alternative is Ukubola.Rendering.IWeaponRestorePresentation restored)restored.ResetTransient();}
         private WeaponDefinition lastWeapon;
         private Ukubola.Release.ReleaseArt lastArt;
         private Texture2D releaseIdle,releaseFire,releaseRecover;

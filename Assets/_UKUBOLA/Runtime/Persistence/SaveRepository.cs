@@ -15,10 +15,10 @@ namespace Ukubola.Persistence
     }
     [Serializable] public sealed class MissionSnapshot
     {
-        public int version = 2, revision, difficulty = 1;
+        public int version = 2, revision, difficulty = 1, keys;
         public string missionId, utc;
         public Vector3 position;
-        public float yaw, elapsed, invulnerability, berserk;
+        public float yaw, elapsed, invulnerability, berserk, weaponCooldown;
         public SavedGear gear, entry;
         public CampaignProgress prior = new CampaignProgress();
         public EntitySnapshot[] entities = Array.Empty<EntitySnapshot>();
@@ -28,6 +28,7 @@ namespace Ukubola.Persistence
             void Need(bool value, string reason) { if (!value) throw new InvalidDataException(reason); }
             Need(version == 2 && revision > 0 && !string.IsNullOrWhiteSpace(missionId) && missionId.Length <= 128 && difficulty >= 0 && difficulty <= 2, "Incompatible snapshot identity/version.");
             Need(gear != null && entry != null && gear.Valid() && entry.Valid() && prior != null && prior.Valid, "Invalid saved loadout/progress.");
+            Need(keys>=0&&keys<=63&&SaveData.Range(weaponCooldown,0,60),"Invalid saved keys/weapon cooldown.");
             Need(MissionDefinition.Finite(position) && SaveData.Range(yaw, 0, 360) && SaveData.Range(elapsed, 0, SaveData.MaxSeconds) && SaveData.Range(invulnerability, 0, 600) && SaveData.Range(berserk, 0, 600), "Invalid player position/timers.");
             Need(entities != null && entities.Length <= 4096 && entities.All(s => s != null && Guid.TryParseExact(s.id, "N", out _) && !string.IsNullOrEmpty(s.kind) && s.kind.Length <= 64 && !string.IsNullOrEmpty(s.json) && s.json.Length <= 65536) && entities.Select(s => s.id).Distinct(StringComparer.Ordinal).Count() == entities.Length, "Invalid entity records.");
             foreach (var list in new[] { flags, explored }) Need(list != null && list.Length <= 4096 && list.All(s => !string.IsNullOrWhiteSpace(s) && s.Length <= 128) && list.Distinct(StringComparer.Ordinal).Count() == list.Length, "Invalid world flags/exploration.");
@@ -114,6 +115,7 @@ namespace Ukubola.Persistence
             imported.entry = JsonUtility.FromJson<SavedGear>(JsonUtility.ToJson(legacy.entry));
             imported.position = mission.spawn; imported.yaw = Mathf.Repeat(mission.spawnYaw, 360); imported.elapsed = 0;
             imported.invulnerability = imported.berserk = 0;
+            imported.keys=0;imported.weaponCooldown=0;
             imported.prior = new CampaignProgress { kills = legacy.prior.kills, enemies = legacy.prior.enemies, items = legacy.prior.items, pickups = legacy.prior.pickups,
                 secrets = legacy.prior.secrets, totalSecrets = legacy.prior.rooms, missions = legacy.prior.rooms, seconds = legacy.prior.seconds };
             imported.utc = DateTime.UtcNow.ToString("O"); imported.Validate(); return imported;

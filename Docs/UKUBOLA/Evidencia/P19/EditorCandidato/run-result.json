@@ -1,0 +1,43 @@
+{
+    "success": true,
+    "mode": "capture",
+    "scene": "OutpostSlice",
+    "error": "",
+    "device": "NVIDIA GeForce GTX 1650",
+    "unity": "6000.6.10f1",
+    "utc": "2026-11-26T16:27:10.0330768Z",
+    "captureMethod": "URP StandardRequest; live world and UI rendered at outputWidth/outputHeight; physical window reported separately",
+    "timingKind": "player-loop samples; static QA, not final gameplay benchmark",
+    "frames": 120,
+    "outputWidth": 984,
+    "outputHeight": 554,
+    "windowWidth": 984,
+    "windowHeight": 554,
+    "internalWidth": 640,
+    "internalHeight": 360,
+    "quality": 1,
+    "averageMs": 17.252756118774414,
+    "p95Ms": 23.033802032470703,
+    "p99Ms": 26.637500762939453,
+    "allocatedBytes": 1856736904,
+    "captures": [
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\799d5ac9ef0d4c44bf512e423bedadf1\\qa\\capture-00.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\799d5ac9ef0d4c44bf512e423bedadf1\\qa\\capture-01.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\799d5ac9ef0d4c44bf512e423bedadf1\\qa\\capture-02.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\799d5ac9ef0d4c44bf512e423bedadf1\\qa\\capture-03.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\799d5ac9ef0d4c44bf512e423bedadf1\\qa\\capture-04.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\799d5ac9ef0d4c44bf512e423bedadf1\\qa\\capture-05.png"
+    ],
+    "snapshotRoundTrip": true,
+    "behaviorChecks": [
+        "Locked door and mid-travel v2 disk round trip",
+        "Actual passenger transport, descent and mid-lift restore",
+        "Lift head clearance and protection beneath the raised deck",
+        "Door obstruction reverses without crushing the actual player",
+        "Physical toxic exposure, drain continuation and silent objective restore",
+        "Living/dead actor round trip without repeated death or duplicate identities",
+        "Barrel chain reaction and persistent destruction of all visual parts",
+        "Secret and optional reward restore without duplicate grants",
+        "Three objective conditions, mid-encounter load and exactly-once mission completion"
+    ]
+}

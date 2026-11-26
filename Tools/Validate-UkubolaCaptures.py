@@ -18,6 +18,6 @@ for name in report.get('captures', []):
     results.append({'file': str(path), 'width': pixels.shape[1], 'height': pixels.shape[0],
                     'standardDeviation': float(pixels.std()), 'nonBlackFraction': float((pixels.max(axis=2) > 12).mean()),'dominantWorldColorFraction':dominant})
 valid = len(results) >= 6 and all(r['standardDeviation'] > 5 and r['nonBlackFraction'] > .05 for r in results)
-if report.get('scene')=='ArtRoom': valid=valid and all(r['dominantWorldColorFraction']<.92 for r in results)
+if report.get('scene') in ('ArtRoom','OutpostSlice'): valid=valid and all(r['dominantWorldColorFraction']<.92 for r in results)
 print(json.dumps({'success': valid, 'captures': results}, indent=2))
 raise SystemExit(0 if valid else 1)

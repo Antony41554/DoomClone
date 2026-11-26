@@ -33,14 +33,16 @@ namespace Ukubola.EditorTools
         }
         public static Material Surface(string key, Color? tint = null, float emission = 0)
         {
+            var albedo=Asset<Texture2D>(Textures+"/"+key+"_Base.png");var normal=Asset<Texture2D>(Textures+"/"+key+"_Normal.png");
+            var mask=Asset<Texture2D>(Textures+"/"+key+"_Mask.png");var emissive=Asset<Texture2D>(Textures+"/"+key+"_Emission.png");
             Folder(Root + "/Materials"); string materialKey = key + (tint.HasValue ? "_" + ColorUtility.ToHtmlStringRGB(tint.Value) : "") + "_" + emission.ToString("F1", CultureInfo.InvariantCulture);
             string path = Root + "/Materials/" + materialKey + ".mat"; var material = AssetDatabase.LoadAssetAtPath<Material>(path);
             if (!material) { material = new Material(Shader.Find("Universal Render Pipeline/Lit")); AssetDatabase.CreateAsset(material, path); }
-            material.SetTexture("_BaseMap", Asset<Texture2D>(Textures + "/" + key + "_Base.png"));
-            material.SetTexture("_BumpMap", Asset<Texture2D>(Textures + "/" + key + "_Normal.png")); material.EnableKeyword("_NORMALMAP");
-            material.SetTexture("_MetallicGlossMap", Asset<Texture2D>(Textures + "/" + key + "_Mask.png")); material.EnableKeyword("_METALLICSPECGLOSSMAP");
-            material.SetTexture("_OcclusionMap", Asset<Texture2D>(Textures + "/" + key + "_Mask.png")); material.EnableKeyword("_OCCLUSIONMAP");
-            material.SetTexture("_EmissionMap", Asset<Texture2D>(Textures + "/" + key + "_Emission.png"));
+            material.SetTexture("_BaseMap",albedo);
+            material.SetTexture("_BumpMap",normal); material.EnableKeyword("_NORMALMAP");
+            material.SetTexture("_MetallicGlossMap",mask); material.EnableKeyword("_METALLICSPECGLOSSMAP");
+            material.SetTexture("_OcclusionMap",mask); material.EnableKeyword("_OCCLUSIONMAP");
+            material.SetTexture("_EmissionMap",emissive);
             material.SetColor("_BaseColor", tint ?? Color.white); material.SetColor("_EmissionColor", Color.white * emission);
             material.globalIlluminationFlags = emission > 0 ? MaterialGlobalIlluminationFlags.BakedEmissive : MaterialGlobalIlluminationFlags.EmissiveIsBlack;
             if (emission > 0) material.EnableKeyword("_EMISSION"); else material.DisableKeyword("_EMISSION");
@@ -154,6 +156,24 @@ namespace Ukubola.EditorTools
                 Box(rig,"Head",new Vector3(0,1.72f*scale,0),new Vector3(.56f,.48f,.5f),body);
                 Box(rig,"Visor",new Vector3(0,1.75f*scale,.265f),new Vector3(.42f,.12f,.06f),visor);
                 Box(rig,"Mouth",new Vector3(0,1.56f*scale,.27f),new Vector3(.22f,.07f,.05f),dark);
+                if(!brute)
+                {
+                    var accent=Solid(imp?"Imp Copper Trim":"Guard Trim",imp?new Color(.5f,.16f,.06f):new Color(.34f,.43f,.39f),.55f,.45f);
+                    Box(rig,"Helmet brow",new Vector3(0,1.85f,.28f),new Vector3(.59f,.08f,.09f),accent);
+                    Box(rig,"Chin guard",new Vector3(0,1.5f,.25f),new Vector3(.42f,.09f,.14f),accent);
+                    foreach(float side in new[]{-1f,1f})
+                    {
+                        Box(rig,"Visor housing",new Vector3(side*.25f,1.74f,.27f),new Vector3(.06f,.22f,.08f),dark);
+                        Box(rig,"Chest plate edge",new Vector3(side*.32f,1.2f,.27f),new Vector3(.07f,.4f,.08f),accent);
+                        Box(rig,"Belt pouch",new Vector3(side*.22f,.83f,.29f),new Vector3(.17f,.16f,.16f),accent);
+                    }
+                    if(!imp)
+                    {
+                        var mark=Solid("Guard Identification",new Color(.68f,.75f,.66f),.15f,.25f);
+                        for(int stripe=0;stripe<3;stripe++)Box(rig,"Unit marking",new Vector3(-.17f+stripe*.045f,1.23f,.305f),new Vector3(.022f,.13f,.015f),mark);
+                        Box(rig,"Helmet seam",new Vector3(0,1.965f,0),new Vector3(.045f,.025f,.46f),dark);
+                    }
+                }
                 foreach(float side in new[]{-1f,1f})
                 {
                     string limb=side<0?"Left":"Right";
@@ -180,7 +200,7 @@ namespace Ukubola.EditorTools
                     clip.name=state;clip.legacy=true;clip.frameRate=12;clip.wrapMode=state=="Idle"||state=="Walk"?WrapMode.Loop:WrapMode.ClampForever;
                     float duration=state=="Walk"?.64f:state=="Attack"?.4f:state=="Pain"?.2f:state=="Death"?.65f:1.2f;
                     AnimationCurve Curve(float start,float middle,float end)=>new AnimationCurve(new Keyframe(0,start),new Keyframe(duration*.5f,middle),new Keyframe(duration,end));
-                    clip.SetCurve("Rig",typeof(Transform),"localPosition.y",Curve(0,state=="Walk"?.045f:state=="Death"?-.3f:.018f,state=="Death"?-.55f:0));
+                    clip.SetCurve("Rig",typeof(Transform),"localPosition.y",Curve(0,state=="Walk"?.045f:state=="Death"?.18f:.018f,state=="Death"?.35f:0));
                     if(state=="Death")clip.SetCurve("Rig",typeof(Transform),"localEulerAnglesRaw.x",Curve(0,35,85));
                     if(!watcher)foreach(string limb in new[]{"Left","Right"})
                     {

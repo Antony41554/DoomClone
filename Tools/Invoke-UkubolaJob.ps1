@@ -1,5 +1,5 @@
 param(
-    [Parameter(Mandatory=$true)] [ValidateSet('Audit','SelfTests','RunEditTests','BuildArtRoom','BakeArtRoom','BuildArtPreview','BuildArtPreviewV2','ValidateLegacy','BuildLegacy','RestoreBuildSettings','ReloadCheckpoint','Fail','PlayQa')] [string] $Operation,
+    [Parameter(Mandatory=$true)] [ValidateSet('Audit','SelfTests','RunEditTests','BuildArtRoom','BakeArtRoom','BuildOutpostSlice','BakeOutpostSlice','BuildArtPreview','BuildArtPreviewV2','BuildSlicePreview','ValidateLegacy','BuildLegacy','RestoreBuildSettings','ReloadCheckpoint','Fail','PlayQa','PlaySliceRoute')] [string] $Operation,
     [string] $Scene,
     [int] $TimeoutSeconds = 600
 )
@@ -22,3 +22,4 @@ while (-not (Test-Path -LiteralPath $resultPath)) {
 $result = Get-Content -LiteralPath $resultPath -Raw | ConvertFrom-Json
 $result | ConvertTo-Json -Depth 8
 if ($result.status -ne 'succeeded') { exit 1 }
+exit 0

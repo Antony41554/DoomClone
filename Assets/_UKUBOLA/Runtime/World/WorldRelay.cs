@@ -19,7 +19,7 @@ namespace Ukubola.World
             if (!context.Health || context.Health.IsDead) return "Unavailable";
             if (!powered) return "NO POWER";
             if (singleUse && used) return "ALREADY ACTIVATED";
-            used = true; Execute(WorldVerb.On, 0); return "ACTIVATED";
+            used = true; Execute(singleUse?WorldVerb.On:WorldVerb.Toggle, 0); return "ACTIVATED";
         }
         public bool Accepts(WorldVerb verb) => verb == WorldVerb.On || verb == WorldVerb.Off || verb == WorldVerb.Toggle;
         public void Execute(WorldVerb verb, float value)

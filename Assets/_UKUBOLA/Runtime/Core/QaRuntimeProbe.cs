@@ -63,6 +63,7 @@ namespace Ukubola
             scenario = File.Exists(config) ? JsonUtility.FromJson<QaScenario>(File.ReadAllText(config)) : new QaScenario();
             scenario.mode = QaEnvironment.Argument("-ukubola-qa-mode") ?? scenario.mode;
             scenario.scene = QaEnvironment.Argument("-ukubola-qa-scene") ?? scenario.scene;
+            UnityEngine.Random.InitState(scenario.seed);
             if (scenario.mode == "manual") { finished = true; yield break; }
             Application.targetFrameRate = 60;
             Application.runInBackground = true;
@@ -101,8 +102,9 @@ namespace Ukubola
             var modern=FindAnyObjectByType<ModernDisplay>();if(modern&&scenario.quality>=0)modern.Apply(scenario.quality,scenario.classicAspect);
             try{PrepareCaptureOutput();}catch(Exception e){valid=false;problem=e.ToString();}
             if(!valid){Complete(false,problem,roundTrip);yield break;}
-            if (player) player.GetComponent<Powerup>().Grant(PowerupKind.Invulnerability, 600);
-            if(player&&scenario.selectedWeapon>=0&&scenario.selectedWeapon<8)
+            if(player)player.GetComponent<WeaponController>().SetQaSeed(scenario.seed);
+            if (player&&!scenario.verifyRoute) player.GetComponent<Powerup>().Grant(PowerupKind.Invulnerability, 600);
+            if(player&&!scenario.verifyRoute&&scenario.selectedWeapon>=0&&scenario.selectedWeapon<8)
             {
                 var guns=player.GetComponent<WeaponController>();var bag=player.GetComponent<Ukubola.Player.PlayerInventory>();
                 var weapon=(Ukubola.Player.WeaponId)scenario.selectedWeapon;bag.TryGrantWeapon(weapon);
@@ -111,7 +113,7 @@ namespace Ukubola
             }
             if(scenario.freezeActors)
             {
-                foreach(var brain in FindObjectsByType<Ukubola.Enemies.EnemyBrain>()) { brain.enabled=false;brain.GetComponent<Ukubola.Enemies.EnemyMotor>().Stop(); }
+                foreach(var brain in FindObjectsByType<Ukubola.Enemies.EnemyBrain>()) { brain.Suspended=true;brain.GetComponent<Ukubola.Enemies.EnemyMotor>().Stop(); }
                 if(player) { player.GetComponent<Ukubola.Player.PlayerMotor>().enabled=false;player.GetComponent<Ukubola.Player.PlayerInputReader>().enabled=false; }
             }
             if(scenario.verifyArtRoom&&player)
@@ -125,6 +127,31 @@ namespace Ukubola
                 if(!UnityEngine.AI.NavMesh.CalculatePath(new Vector3(-7,0,11),new Vector3(-7,2.425f,17),UnityEngine.AI.NavMesh.AllAreas,path)||path.status!=UnityEngine.AI.NavMeshPathStatus.PathComplete)
                 {Complete(false,"Service stair navigation disconnected",roundTrip);yield break;}
                 behaviorChecks.Add("Enemy navigation connects floor to upper walkway");
+            }
+            if(scenario.verifyMission)
+            {
+                var saves=FindAnyObjectByType<Ukubola.World.WorldSaveController>();
+                if(!saves){Complete(false,"Mission save service missing",roundTrip);yield break;}
+                Exception missionError=null;
+                yield return Ukubola.World.WorldRuntimeQa.Run(saves,check=>behaviorChecks.Add(check),error=>missionError=error);
+                if(missionError!=null){Complete(false,missionError.ToString(),roundTrip);yield break;}
+                roundTrip=true;
+            }
+            if(scenario.verifyRoute)
+            {
+                var saves=FindAnyObjectByType<Ukubola.World.WorldSaveController>();
+                if(!saves){Complete(false,"Live route save service missing",roundTrip);yield break;}
+                Exception routeError=null;
+                yield return Ukubola.World.WorldRouteQa.Execute(saves,check=>
+                {
+                    behaviorChecks.Add(check);
+                    string stage=Path.Combine(QaEnvironment.Root,"capture-"+captures.Count.ToString("00")+".png");
+                    CaptureRenderedFrame(stage,qaOutput?qaOutput.width:Screen.width,qaOutput?qaOutput.height:Screen.height);captures.Add(stage);
+                },milliseconds=>times.Add(milliseconds),error=>routeError=error);
+                if(routeError!=null){Complete(false,routeError.ToString(),roundTrip);yield break;}
+                roundTrip=true;
+                foreach(var actor in FindObjectsByType<Ukubola.Enemies.EnemyBrain>()){actor.Suspended=true;actor.GetComponent<Ukubola.Enemies.EnemyMotor>().Stop();}
+                player.GetComponent<Ukubola.Player.PlayerMotor>().enabled=false;player.GetComponent<Ukubola.Player.PlayerInputReader>().enabled=false;
             }
             for (int i = 0; i < Mathf.Clamp(scenario.warmupFrames, 3, 300); i++) yield return null;
             for (int i = 0; i < Mathf.Clamp(scenario.sampleFrames, 1, 18000); i++)
@@ -196,9 +223,10 @@ namespace Ukubola
             var sorted = times.OrderBy(x => x).ToArray();
             float Percent(float p) => sorted.Length == 0 ? 0 : sorted[Mathf.Clamp(Mathf.CeilToInt(sorted.Length * p) - 1, 0, sorted.Length - 1)];
             var result = new QaRunResult { success = success, error = error, snapshotRoundTrip = roundTrip, mode = scenario?.mode,
+                environment=Application.platform.ToString(),
                 scene = SceneManager.GetActiveScene().name, unity = Application.unityVersion, device = SystemInfo.graphicsDeviceName,
                 outputWidth=qaOutput?qaOutput.width:Screen.width,outputHeight=qaOutput?qaOutput.height:Screen.height,windowWidth=Screen.width,windowHeight=Screen.height,internalWidth=world?world.width:0,internalHeight=world?world.height:0,quality=modern?modern.Quality:-1,
-                captureMethod = "URP StandardRequest; live world and UI rendered at outputWidth/outputHeight; physical window reported separately", timingKind = "player-loop samples; static QA, not final gameplay benchmark",
+                captureMethod = "URP StandardRequest; live world and UI rendered at outputWidth/outputHeight; physical window reported separately", timingKind = scenario.verifyRoute?"Live autonomous route through normal player commands; elapsed duration and encounter coverage require assessment before P26 acceptance":"player-loop samples; static QA, not final gameplay benchmark",
                 utc = DateTime.UtcNow.ToString("O"), frames = times.Count, averageMs = times.Count == 0 ? 0 : times.Average(),
                 p95Ms = Percent(.95f), p99Ms = Percent(.99f), allocatedBytes = Profiler.GetTotalAllocatedMemoryLong(), captures = captures.ToArray(), behaviorChecks=behaviorChecks.ToArray() };
             File.WriteAllText(Path.Combine(QaEnvironment.Root, "run-result.json"), JsonUtility.ToJson(result, true));

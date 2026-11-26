@@ -7,7 +7,9 @@ namespace Ukubola.Enemies
     {
         [SerializeField] private WeaponController weapons;
         private int previous;
-        public bool CanHear(Vector3 listener,float range){var sectors=GetComponent<SectorNoise>();return sectors?sectors.CanReach(Position,listener,range):Vector3.Distance(listener,Position)<=range;}
+        private INoisePropagation propagation;
+        private void Awake(){foreach(var component in GetComponents<MonoBehaviour>())if(component is INoisePropagation provider){propagation=provider;break;}}
+        public bool CanHear(Vector3 listener,float range){if(propagation!=null)return propagation.CanReach(Position,listener,range);var sectors=GetComponent<SectorNoise>();return sectors?sectors.CanReach(Position,listener,range):Vector3.Distance(listener,Position)<=range;}
         public WeaponController Weapons => weapons;
         public int Sequence { get; private set; }
         public Vector3 Position { get; private set; }

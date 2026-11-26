@@ -95,7 +95,7 @@ namespace Ukubola.EditorTools
                 var state = new EvolutionJobState { job = job, phase = "executing", boot = Boot, startedUtc = DateTime.UtcNow.Ticks, originalScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path };
                 Write(Journal, state); File.Move(request, request + ".claimed"); started = EditorApplication.timeSinceStartup;
                 if (job.operation == "ReloadCheckpoint") { state.phase = "reload"; Write(Journal, state); EditorUtility.RequestScriptReload(); return; }
-                if (job.operation == "PlayQa") { StartPlay(state); return; }
+                if (job.operation == "PlayQa"||job.operation=="PlaySliceRoute") { StartPlay(state); return; }
                 busy = true;
                 string detail = Execute(job);
                 Finish(job, true, detail);
@@ -120,8 +120,11 @@ namespace Ukubola.EditorTools
                 case "RunEditTests": return RunEditTests(job.id);
                 case "BuildArtRoom": return UkubolaEvolutionScene.BuildArtRoom();
                 case "BakeArtRoom": return UkubolaEvolutionScene.BakeArtRoom();
+                case "BuildOutpostSlice": return UkubolaEvolutionScene.BuildOutpostSlice();
+                case "BakeOutpostSlice": return UkubolaEvolutionScene.BakeOutpostSlice();
                 case "BuildArtPreview": return BuildArtPreview(job.id);
                 case "BuildArtPreviewV2": return BuildArtPreview(job.id);
+                case "BuildSlicePreview": return BuildArtPreview(job.id,UkubolaEvolutionScene.SlicePath);
                 case "ValidateLegacy": WithScenes(UkubolaPersistenceSetup.ValidateAll); return "Legacy scene references, routes and save signatures valid.";
                 case "BuildLegacy": return BuildLegacy(job.id);
                 case "RestoreBuildSettings":
@@ -202,9 +205,10 @@ namespace Ukubola.EditorTools
             });
             UkubolaFinalBuild.Package(folder, folder + ".zip"); return folder;
         }
-        private static string BuildArtPreview(string id)
+        private static string BuildArtPreview(string id,string scenePath=null)
         {
-            string folder=Path.Combine(Project,"Builds","UKUBOLA_ArtPreview_"+id),executable=Path.Combine(folder,"UKUBOLA.exe");
+            scenePath=scenePath??UkubolaEvolutionScene.RoomPath;bool slice=scenePath==UkubolaEvolutionScene.SlicePath;
+            string folder=Path.Combine(Project,"Builds",(slice?"UKUBOLA_SlicePreview_":"UKUBOLA_ArtPreview_")+id),executable=Path.Combine(folder,"UKUBOLA.exe");
             Check(!Directory.Exists(folder),"Preview build destination already exists.");EvolutionManifest.Validate();
             var preloaded=PlayerSettings.GetPreloadedAssets();
             var graphics=PlayerSettings.GetGraphicsAPIs(BuildTarget.StandaloneWindows64);bool defaultGraphics=PlayerSettings.GetUseDefaultGraphicsAPIs(BuildTarget.StandaloneWindows64);
@@ -226,10 +230,10 @@ namespace Ukubola.EditorTools
                 PlayerSettings.strictShaderVariantMatching=true;
                 EvolutionShaderStripper.ResetCounts();ArtPreviewBuildActive=true;
                 WithScenes(()=>{
-                    EditorSceneManager.OpenScene(UkubolaEvolutionScene.RoomPath);UkubolaEvolutionScene.ValidateArtRoom();
+                    EditorSceneManager.OpenScene(scenePath);if(slice)UkubolaEvolutionScene.ValidateOutpostSlice();else UkubolaEvolutionScene.ValidateArtRoom();
                     EvolutionShaderStripper.ConfigureMaterials(UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(r=>r.GetComponentsInChildren<Renderer>(true)).SelectMany(r=>r.sharedMaterials));
                     Check(LightmapSettings.lightmaps.Length>0,"Bake the art room before building a preview.");
-                    var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{UkubolaEvolutionScene.RoomPath},target=BuildTarget.StandaloneWindows64,locationPathName=executable,options=BuildOptions.Development|BuildOptions.CleanBuildCache});
+                    var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{scenePath},target=BuildTarget.StandaloneWindows64,locationPathName=executable,options=BuildOptions.Development|BuildOptions.CleanBuildCache});
                     Check(report.summary.result==BuildResult.Succeeded,"Art preview Windows build failed: "+report.summary.result);
                     Check(EvolutionShaderStripper.Kept==0||EvolutionShaderStripper.ForwardVertex>0&&EvolutionShaderStripper.ForwardFragment>0,"Art preview stripped every Lit forward variant; rejecting this build before QA.");
                 });
@@ -244,7 +248,7 @@ namespace Ukubola.EditorTools
                 for(int q=0;q<profile.pipelines.Length;q++){EditorJsonUtility.FromJsonOverwrite(pipelineSnapshots[q],profile.pipelines[q]);EditorUtility.SetDirty(profile.pipelines[q]);}
                 AssetDatabase.SaveAssets();
             }
-            Write(Path.Combine(folder,"BUILD_COMPLETE.json"),new EvolutionJobResult{id=id,operation="BuildArtPreview",status="succeeded",detail=HashFile(executable)+" | shader variants removed="+EvolutionShaderStripper.Removed+", kept="+EvolutionShaderStripper.Kept+", material masks="+EvolutionShaderStripper.MaterialMasks,utc=DateTime.UtcNow.ToString("O")});
+            Write(Path.Combine(folder,"BUILD_COMPLETE.json"),new EvolutionJobResult{id=id,operation=slice?"BuildSlicePreview":"BuildArtPreview",status="succeeded",detail=HashFile(executable)+" | shader variants removed="+EvolutionShaderStripper.Removed+", kept="+EvolutionShaderStripper.Kept+", material masks="+EvolutionShaderStripper.MaterialMasks,utc=DateTime.UtcNow.ToString("O")});
             return executable;
         }
         private static void StartPlay(EvolutionJobState state)
@@ -256,9 +260,13 @@ namespace Ukubola.EditorTools
             {
                 scenario=JsonUtility.FromJson<QaScenario>(File.ReadAllText(Path.Combine(Project,"Tools","QA","ArtRoom.json")));scenario.scene=state.job.scene;
             }
+            if(state.job.scene==UkubolaEvolutionScene.SlicePath)
+            {
+                scenario=JsonUtility.FromJson<QaScenario>(File.ReadAllText(Path.Combine(Project,"Tools","QA",state.job.operation=="PlaySliceRoute"?"OutpostRoute.json":"OutpostSlice.json")));scenario.scene=state.job.scene;
+            }
             Write(Path.Combine(root, "scenario.json"), scenario);
             File.WriteAllText(Path.Combine(Queue, "qa-root.txt"), root);
-            EditorSceneManager.OpenScene(state.job.scene); state.phase = "play"; state.deadlineUtc = DateTime.UtcNow.AddMinutes(3).Ticks; Write(Journal, state); EditorApplication.isPlaying = true;
+            EditorSceneManager.OpenScene(state.job.scene); state.phase = "play"; state.deadlineUtc = DateTime.UtcNow.AddMinutes(state.job.operation=="PlaySliceRoute"?10:3).Ticks; Write(Journal, state); EditorApplication.isPlaying = true;
         }
         private static void PollPlay(EvolutionJobState state)
         {
@@ -298,6 +306,10 @@ namespace Ukubola.EditorTools
         [MenuItem("Tools/UKUBOLA/Evolution/Capture Art Room")] public static void QueueCaptureArtRoom() => Enqueue("PlayQa",UkubolaEvolutionScene.RoomPath);
         [MenuItem("Tools/UKUBOLA/Evolution/Run EditMode Tests")] public static void QueueEditTests() => Enqueue("RunEditTests");
         [MenuItem("Tools/UKUBOLA/Evolution/Build Art Preview")] public static void QueueArtPreview() => Enqueue("BuildArtPreview");
+        [MenuItem("Tools/UKUBOLA/Evolution/Generate Outpost Slice")] public static void QueueOutpostSlice()=>Enqueue("BuildOutpostSlice");
+        [MenuItem("Tools/UKUBOLA/Evolution/Bake Outpost Slice")] public static void QueueBakeOutpostSlice()=>Enqueue("BakeOutpostSlice");
+        [MenuItem("Tools/UKUBOLA/Evolution/Build Slice Preview")] public static void QueueBuildSlicePreview()=>Enqueue("BuildSlicePreview");
+        [MenuItem("Tools/UKUBOLA/Evolution/Run Live Slice Route")] public static void QueueLiveSliceRoute()=>Enqueue("PlaySliceRoute",UkubolaEvolutionScene.SlicePath);
         public static string Enqueue(string operation, string scene = null)
         {
             var job = new EvolutionJob { id = Guid.NewGuid().ToString("N"), operation = operation, scene = scene };

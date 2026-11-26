@@ -1,0 +1,22 @@
+{
+  "mode": "capture",
+  "scene": "OutpostSlice",
+  "seed": 1600,
+  "warmupFrames": 60,
+  "sampleFrames": 120,
+  "freezeActors": true,
+  "selectedWeapon": 3,
+  "verifyMission": true,
+  "quality": 1,
+  "captureWidth": 1280,
+  "captureHeight": 720,
+  "classicAspect": false,
+  "poses": [
+    {"position":{"x":0,"y":0.03,"z":2.5},"yaw":0},
+    {"position":{"x":3,"y":0.03,"z":14},"yaw":0},
+    {"position":{"x":-6,"y":0.03,"z":38},"yaw":65},
+    {"position":{"x":6,"y":2.47,"z":26.5},"yaw":210},
+    {"position":{"x":-7,"y":0.03,"z":20},"yaw":0},
+    {"position":{"x":-6,"y":0.03,"z":45},"yaw":55}
+  ]
+}

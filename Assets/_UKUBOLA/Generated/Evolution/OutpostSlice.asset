@@ -1,0 +1,412 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f549ba58ba5f1f34ebcf43a98a16074f, type: 3}
+  m_Name: OutpostSlice
+  m_EditorClassIdentifier: Ukubola.Runtime::Ukubola.World.MissionDefinition
+  missionId: outpost-slice
+  label: The Outpost
+  revision: 1
+  sequence: 0
+  spawn: {x: 0, y: 0.03, z: 2.5}
+  spawnYaw: 0
+  sectors:
+  - key: reception
+    label: Reception
+    center: {x: 0, y: 4.5}
+    size: {x: 18, y: 9}
+    floor: 0
+    ceiling: 5.6
+    plant: 0
+  - key: warehouse
+    label: Warehouse
+    center: {x: 0, y: 14.5}
+    size: {x: 18, y: 11}
+    floor: 0
+    ceiling: 5.6
+    plant: 0
+  - key: workshop
+    label: Maintenance
+    center: {x: 0, y: 24}
+    size: {x: 18, y: 8}
+    floor: 0
+    ceiling: 5.6
+    plant: 0
+  - key: depot
+    label: Coolant Depot
+    center: {x: 0, y: 35.5}
+    size: {x: 18, y: 15}
+    floor: -0.6
+    ceiling: 5.6
+    plant: 0
+  - key: control
+    label: Control
+    center: {x: 0, y: 47}
+    size: {x: 18, y: 8}
+    floor: 0
+    ceiling: 5.6
+    plant: 0
+  - key: catwalk
+    label: Service Catwalk
+    center: {x: -7, y: 21}
+    size: {x: 3.2, y: 9.5}
+    floor: 2.425
+    ceiling: 5.6
+    plant: 1
+  - key: lift-landing
+    label: Upper Workshop
+    center: {x: 6, y: 26.6}
+    size: {x: 2.8, y: 3}
+    floor: 2.425
+    ceiling: 5.6
+    plant: 1
+  portals:
+  - key: entry
+    from: reception
+    to: warehouse
+    requiredFlag: 
+    position: {x: 0, y: 0, z: 9}
+    width: 3
+  - key: storage
+    from: warehouse
+    to: workshop
+    requiredFlag: 
+    position: {x: 0, y: 0, z: 20}
+    width: 3
+  - key: transfer
+    from: workshop
+    to: depot
+    requiredFlag: 
+    position: {x: 0, y: 0, z: 28}
+    width: 4.8
+  - key: authorization
+    from: depot
+    to: control
+    requiredFlag: blue_access
+    position: {x: 0, y: 0, z: 43}
+    width: 3
+  - key: stair
+    from: warehouse
+    to: catwalk
+    requiredFlag: 
+    position: {x: -7, y: 2.4, z: 16}
+    width: 3
+  - key: cargo-lift
+    from: workshop
+    to: lift-landing
+    requiredFlag: 
+    position: {x: 6, y: 2.425, z: 25.2}
+    width: 2.8
+  placements:
+  - key: reception-door
+    prefab: mover
+    sector: reception
+    position: {x: 0, y: 0, z: 9}
+    yaw: 0
+    optional: 0
+  - key: transfer-door
+    prefab: mover
+    sector: workshop
+    position: {x: 0, y: 0, z: 28}
+    yaw: 0
+    optional: 0
+  - key: control-door
+    prefab: mover
+    sector: control
+    position: {x: 0, y: 0, z: 43}
+    yaw: 0
+    optional: 0
+  - key: exit-door
+    prefab: mover
+    sector: control
+    position: {x: 0, y: 0, z: 49}
+    yaw: 0
+    optional: 0
+  - key: transfer-switch
+    prefab: relay
+    sector: workshop
+    position: {x: 4, y: 0, z: 24}
+    yaw: 0
+    optional: 0
+  - key: remote-access
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: workshop-lift
+    prefab: mover
+    sector: workshop
+    position: {x: 6, y: 0, z: 24}
+    yaw: 0
+    optional: 0
+  - key: lift-lower-call
+    prefab: relay
+    sector: workshop
+    position: {x: 6, y: 0, z: 22.5}
+    yaw: 0
+    optional: 0
+  - key: lift-upper-call
+    prefab: relay
+    sector: lift-landing
+    position: {x: 7.1, y: 2.425, z: 26.5}
+    yaw: 90
+    optional: 0
+  - key: lower-lift-command
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: upper-lift-command
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: coolant-basin
+    prefab: hazard
+    sector: depot
+    position: {x: 0, y: -0.3, z: 39}
+    yaw: 0
+    optional: 0
+  - key: coolant-pump
+    prefab: relay
+    sector: depot
+    position: {x: -6, y: 0, z: 40}
+    yaw: 0
+    optional: 0
+  - key: pump-drain
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: power-generator
+    prefab: relay
+    sector: control
+    position: {x: -5, y: 0, z: 46}
+    yaw: 0
+    optional: 0
+  - key: power_online
+    prefab: flag
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: coolant_drained
+    prefab: flag
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: transfer_secured
+    prefab: flag
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: power-objective
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: drain-objective
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: reception-guard
+    prefab: enemy
+    sector: reception
+    position: {x: -2, y: 0, z: 7}
+    yaw: 180
+    optional: 0
+  - key: warehouse-imp
+    prefab: enemy
+    sector: warehouse
+    position: {x: 3, y: 0, z: 17}
+    yaw: 180
+    optional: 0
+  - key: workshop-guard
+    prefab: enemy
+    sector: workshop
+    position: {x: -3, y: 0, z: 25}
+    yaw: 180
+    optional: 0
+  - key: depot-imp
+    prefab: enemy
+    sector: depot
+    position: {x: 5, y: 0, z: 37}
+    yaw: 180
+    optional: 0
+  - key: depot-guard
+    prefab: enemy
+    sector: depot
+    position: {x: -5, y: 0, z: 41}
+    yaw: 180
+    optional: 0
+  - key: control-guard
+    prefab: enemy
+    sector: control
+    position: {x: -2, y: 0, z: 47}
+    yaw: 180
+    optional: 0
+  - key: control-imp
+    prefab: enemy
+    sector: control
+    position: {x: 3, y: 0, z: 47}
+    yaw: 180
+    optional: 0
+  - key: control-encounter
+    prefab: encounter
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: control-arrival
+    prefab: trigger
+    sector: control
+    position: {x: 0, y: 1, z: 44}
+    yaw: 0
+    optional: 0
+  - key: release-ambush
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: encounter-objective
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: exit-after-power_online
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: exit-after-coolant_drained
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: exit-after-transfer_secured
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: entry-shotgun
+    prefab: pickup
+    sector: reception
+    position: {x: 1, y: 0, z: 4}
+    yaw: 0
+    optional: 0
+  - key: entry-shells
+    prefab: pickup
+    sector: reception
+    position: {x: 2, y: 0, z: 4}
+    yaw: 0
+    optional: 0
+  - key: entry-medikit
+    prefab: pickup
+    sector: reception
+    position: {x: -4, y: 0, z: 7}
+    yaw: 0
+    optional: 0
+  - key: warehouse-blue-card
+    prefab: pickup
+    sector: warehouse
+    position: {x: 6, y: 0, z: 15}
+    yaw: 0
+    optional: 0
+  - key: blue_access
+    prefab: flag
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: card-authorization
+    prefab: binding
+    sector: reception
+    position: {x: 0, y: 0, z: 0}
+    yaw: 0
+    optional: 0
+  - key: depot-shells
+    prefab: pickup
+    sector: depot
+    position: {x: 0, y: -0.58, z: 39}
+    yaw: 0
+    optional: 0
+  - key: lift-armor
+    prefab: pickup
+    sector: lift-landing
+    position: {x: 6, y: 2.45, z: 27.5}
+    yaw: 0
+    optional: 0
+  - key: upper-shells
+    prefab: pickup
+    sector: catwalk
+    position: {x: -7, y: 2.45, z: 24}
+    yaw: 0
+    optional: 0
+  - key: maintenance-grille
+    prefab: mover
+    sector: workshop
+    position: {x: -7, y: 0, z: 22}
+    yaw: 0
+    optional: 0
+  - key: maintenance-secret
+    prefab: secret
+    sector: workshop
+    position: {x: -7, y: 1, z: 23.8}
+    yaw: 0
+    optional: 0
+  - key: secret-backpack
+    prefab: pickup
+    sector: workshop
+    position: {x: -7, y: 0, z: 24}
+    yaw: 0
+    optional: 0
+  - key: storage-barrel-a
+    prefab: barrel
+    sector: warehouse
+    position: {x: -4, y: 0.65, z: 13}
+    yaw: 0
+    optional: 0
+  - key: storage-barrel-b
+    prefab: barrel
+    sector: warehouse
+    position: {x: -2.4, y: 0.65, z: 14.2}
+    yaw: 0
+    optional: 0
+  - key: depot-barrel
+    prefab: barrel
+    sector: depot
+    position: {x: 5, y: 0.65, z: 39}
+    yaw: 0
+    optional: 0
+  - key: transfer-exit
+    prefab: exit
+    sector: control
+    position: {x: 0, y: 1, z: 50}
+    yaw: 0
+    optional: 0
+  objectives:
+  - power_online
+  - coolant_drained
+  - transfer_secured

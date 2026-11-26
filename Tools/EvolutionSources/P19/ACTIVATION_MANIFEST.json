@@ -1,0 +1,127 @@
+[
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\EnemyModelView.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\Rendering\\EnemyModelView.cs",
+    "sha256": "e80d4584d748fe04a63db86088cc3510cde889049885a228187a3a2d00fdb985"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\IEnemyRestorePresentation.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\Rendering\\IEnemyRestorePresentation.cs",
+    "sha256": "9aead31a1408d0ee1b593cb3d88de3e4709fb3cc53ef0c05ad55725d425ad61c"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\IEntityRestoreComplete.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\Persistence\\IEntityRestoreComplete.cs",
+    "sha256": "6e65d06c1fb49d86d7adff0578e76490b2d536b5e706c36892c35126c208389d"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\INoisePropagation.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\Enemies\\INoisePropagation.cs",
+    "sha256": "1e53b8cfdf213ac5a5a341640952fe0ef2a2dbf5ff1898dee960616c9571e732"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\IWorldActionParameters.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\Persistence\\IWorldActionParameters.cs",
+    "sha256": "63b9b434a46db802328054e0994d1a5b847bc73ffcd37eb648e3a119f93eb70d"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\MissionAcoustics.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\MissionAcoustics.cs",
+    "sha256": "5dfdca1a567257c7efba441a080c46fe87ed27cd7d8eeaf41eed566f5631a7ca"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\MissionAcousticsTests.cs",
+    "destination": "Assets\\_UKUBOLA\\Tests\\EditMode\\MissionAcousticsTests.cs",
+    "sha256": "20995f88d10009cf913fc05db96ae7fee30e45616266dfb4ca0bce98692e2ba0"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\MissionContext.Restore.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\MissionContext.Restore.cs",
+    "sha256": "90cf99e8fc342a41f3559852ea84f368d15ae5ac7b2662f488b8f20c48cd1a69"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\UkubolaEvolutionSlice.cs",
+    "destination": "Assets\\_UKUBOLA\\Editor\\UkubolaEvolutionSlice.cs",
+    "sha256": "a33c1ea53cb21e8b4f5f06c0b04fe773a1b3901bc1448ade37bccd389cf4870d"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldActorState.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldActorState.cs",
+    "sha256": "964c827a08dffaee99ed8066f0597f796e729e00fccbfbba6b1574c748038ce6"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldAudio.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldAudio.cs",
+    "sha256": "67a32018e95bf636590b5e4f7d449735debd48a8493bf32c4a49e31599becf28"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldBarrelState.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldBarrelState.cs",
+    "sha256": "c457f90eca9a847d0a86353e47e2a0fba77d31550f7bc75a038947df6db961fc"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldEncounter.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldEncounter.cs",
+    "sha256": "721743ef47d9eb59d41dd29f48081f6ba0f6903145de6f3e5927566fd12b6684"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldExit.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldExit.cs",
+    "sha256": "3201e6e9bbe36832476c8cfc06dd8884eb39e97c260c19818a00b2dd23696212"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldFlag.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldFlag.cs",
+    "sha256": "93a0c3613bce1e2f7a665580554f8c2b77963b5bb2fe52ab69a958e27552723c"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldHazard.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldHazard.cs",
+    "sha256": "04dba4f83120b0ae96c1377046c3a16be60604e6a1d752fdf831668c16a72031"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldMechanismTests.cs",
+    "destination": "Assets\\_UKUBOLA\\Tests\\EditMode\\WorldMechanismTests.cs",
+    "sha256": "2147c1a5c03b4ff35851b8596cd1eb69723976d2ea73de9a1d7395d4fca1dec9"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldMover.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldMover.cs",
+    "sha256": "043fd4bbba6703dee4c1232a62091c930580869f20eaebb537bd4f1a6d596d82"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldPickupState.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldPickupState.cs",
+    "sha256": "afeff996b7a8dd419434f94d02abbefcf93792925c3ce686ada017b94c211059"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldRelayView.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldRelayView.cs",
+    "sha256": "dbef80fd5261243c16c103059fd8d25b08ffb06188a3b7944d295254d2e6361c"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldRuntimeQa.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\QA\\WorldRuntimeQa.cs",
+    "sha256": "3ba4ea4024b94c4ce347cc2b2b692acd8e8f7a870cce9955318dc6d3b3e82cce"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldSaveController.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldSaveController.cs",
+    "sha256": "38af50e31b0b563be07fd47f5b9cd17c1ed73f1f4f2c6de3679bf7e420d401d8"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldSecret.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldSecret.cs",
+    "sha256": "9c3b1ade75cab3b4899a0ace54f5dd67b9d7c309734fb21df874a23d44007bf5"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldSession.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldSession.cs",
+    "sha256": "6450b5f71bd0674b56786799b2ecc11764a2a341a7d419980b0243feee010b4f"
+  },
+  {
+    "source": "C:\\Users\\Anthony\\Unity\\DoomClone\\Tools\\EvolutionSources\\P19\\WorldTrigger.cs",
+    "destination": "Assets\\_UKUBOLA\\Runtime\\World\\WorldTrigger.cs",
+    "sha256": "53151ff572aece97a2ee01b2446cc1c8930a29860675ee3e97a4625c17b0b300"
+  }
+]

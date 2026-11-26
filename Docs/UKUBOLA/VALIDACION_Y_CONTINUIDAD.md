@@ -116,7 +116,7 @@ Actualización posterior: `fe185...` compiló en 319 s. `player-93b98bfd04a24f0f
 
 La base P18 queda técnicamente aceptada; no equivale al acabado integrado ni al umbral >=4/5 de P19. La ventana física de Alto fue 1080p, y la salida a textura/Canvas realmente renderizada fue 1440p. La legibilidad/pulido del HUD y todos los estados animados siguen bajo revisión en P19/P24.
 
-Próxima operación: checkpoint P18 e integración automatizada de los candidatos de `Tools/EvolutionSources/P19/`, siguiendo su README y preservando GUID. Aún no están activos ni compilados. Ejecutar pruebas, generar/hornear OutpostSlice y comprobar comportamiento real, guardado, combate y audio; corregir antes de aceptar P19. P20–P27 permanecen pendientes.
+Operación histórica posterior a P18: integrar los candidatos P19 preservando GUID. Ya se realizó; **Assets es la fuente activa**. No volver a copiar Tools/EvolutionSources/P19 sobre las correcciones actuales. El estado vigente figura en la sección de cierre reducido de ESTADO_Y_CAMBIOS y ENTREGA_PREVIEW.
 
 ### P17
 
@@ -127,3 +127,11 @@ Primera ejecución NUnit falló en SetUp porque Test Runner crea una escena sin 
 - PlayQa `fbe9100a31bd4af6b60d63d05934977b`: E1M1 se ejecuta y captura con los adaptadores y ensamblados nuevos; presentación anterior conservada. P17 base aceptada; integración de jugador/mundo v2 se comprobará en P19.
 
 Leer PLAN_MAESTRO, ESTADO_Y_CAMBIOS, DECISIONES y este archivo. Comprobar Git y logs actuales; verificar copia/guardados con Tools/Verify-UkubolaBaseline.py. Inspeccionar journal y resultados antes de reenviar un trabajo. Reanudar la primera fase no aceptada, completar sus pruebas y registrar evidencia. No repetir una mutación interrumpida sin inspeccionar sus salidas. Conservar cambios del usuario. En cada cierre registrar commit, fase aceptada, cambios, pruebas, defectos y siguiente operación concreta.
+
+### P19 y entrega con plazo
+
+31 EditMode, nueve comprobaciones reales de mecanismos y recorrido completo del Editor han pasado. El recorrido controla intención a través de PlayerMotor/WeaponController/PlayerInteractor; el combate no usa teletransporte ni daño directo. Las pruebas separadas de persistencia sí establecen estados/daños de forma explícita y no se presentan como combate.
+
+El manifiesto registra fuentes generadoras con hash UTF8/LF y salidas con hash binario exacto. Test-UkubolaSliceGeneration compara semántica entre dos generaciones. El empaquetador excluye carpetas DontShip y símbolos, comprueba CRC, extrae a una carpeta nueva y compara cada hash. Finalize-UkubolaPreview exige ejecución correcta de Outpost y carga v1 en los dos ejecutables extraídos. Publish-UkubolaPreview exige esos comprobantes, verifica digest de GitHub y prepara un borrador antes de publicarlo.
+
+El plazo solicitado no elimina las limitaciones: P19 visual/duración/audio y P20–P27 completos no se consideran aceptados. Las muestras estáticas o de una ruta conocida de ~1 minuto no son el benchmark P26 de tres minutos por misión. El cierre actual se documenta como preview.

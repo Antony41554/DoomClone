@@ -38,12 +38,13 @@ namespace Ukubola.Enemies
         {
             if(!started)return;
             attack.ClearProjectiles(); motor.Disable(); transform.SetPositionAndRotation(spawn,spawnRotation); health.ResetState(); body.enabled=true;
-            rival=null; alerted=false; heard=noise.Sequence; State=EnemyState.Dormant; stateUntil=nextAttack=nextPath=0; Attacks=0;
+            rival=null; alerted=false; lastKnown=spawn; heard=noise.Sequence; State=EnemyState.Dormant; stateUntil=nextAttack=nextPath=0; Attacks=0;
             if(!motor.Begin(spawn)) { Debug.LogError("[UKUBOLA P06] Enemy not on NavMesh: "+name,this); enabled=false; return; } motor.Stop();
         }
         public bool SaveAlerted => alerted;
         public Vector3 SaveLastKnown => lastKnown;
         public float SaveCooldown => Mathf.Max(0,nextAttack-Time.time);
+        public float SavePhaseRemaining=>(State==EnemyState.Attack||State==EnemyState.Pain)?Mathf.Max(0,stateUntil-Time.time):0;
         public Vector3 SavePosition => transform.position - Vector3.up*(motor.Agent.enabled?motor.Agent.baseOffset:0f);
         public void RestoreEnemy(int value,Vector3 position,float yaw,bool awake,Vector3 known,float cooldown,Health opponent)
         {
@@ -58,6 +59,13 @@ namespace Ukubola.Enemies
         }
         public void RestoreRival(Health opponent)
         {rival=opponent&&opponent!=target&&opponent!=health&&!opponent.IsDead&&!health.IsDead?opponent:null;}
+        public void RestoreCombatPhase(EnemyState phase,float remaining)
+        {
+            if(!System.Enum.IsDefined(typeof(EnemyState),phase)||!Ukubola.Persistence.SaveData.Range(remaining,0,60)||(phase==EnemyState.Dead)!=health.IsDead)throw new System.InvalidOperationException("Invalid restored combat phase.");
+            State=phase;stateUntil=Time.time+(phase==EnemyState.Attack?Mathf.Min(remaining,definition.Windup):phase==EnemyState.Pain?Mathf.Min(remaining,definition.Pain):0);nextPath=0;motor.Stop();
+            if(visual is IEnemyRestorePresentation restored)restored.RestoreState(phase,remaining,Time.time);
+            else visual.Present(phase,false,Time.time);
+        }
         private void OnDamage(Health _,DamageInfo info,DamageResult result)
         {
             if(!started || result.Killed)return;

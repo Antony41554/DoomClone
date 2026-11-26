@@ -12,8 +12,8 @@ namespace Ukubola.EditorTools
     {
         public const string Path = UkubolaEvolutionArt.Root + "/GENERATION_MANIFEST.json";
         [Serializable] private sealed class Entry { public string path, sha256; }
-        [Serializable] private sealed class Manifest { public int version=1; public string generator="UkubolaEvolutionScene + UkubolaEvolutionArt", unity; public string[] parameters; public Entry[] files; }
-        private static bool Owned(string p) => p.StartsWith(UkubolaEvolutionArt.Root+"/",StringComparison.Ordinal)||p==UkubolaEvolutionScene.RoomPath||p==UkubolaEvolutionScene.RoomPath+".meta"||p.StartsWith("Assets/_UKUBOLA/Scenes/Evolution/ArtRoom/",StringComparison.Ordinal);
+        [Serializable] private sealed class Manifest { public int version=1; public string generator="UkubolaEvolutionScene + UkubolaEvolutionArt", unity; public string[] parameters; public Entry[] normalizedSources; public Entry[] files; }
+        private static bool Owned(string p) => p.StartsWith(UkubolaEvolutionArt.Root+"/",StringComparison.Ordinal)||p==UkubolaEvolutionScene.RoomPath||p==UkubolaEvolutionScene.RoomPath+".meta"||p.StartsWith("Assets/_UKUBOLA/Scenes/Evolution/ArtRoom/",StringComparison.Ordinal)||p==UkubolaEvolutionScene.SlicePath||p==UkubolaEvolutionScene.SlicePath+".meta"||p.StartsWith("Assets/_UKUBOLA/Scenes/Evolution/OutpostSlice/",StringComparison.Ordinal);
         public static void Validate()
         {
             if(!File.Exists(Path))return;
@@ -25,10 +25,12 @@ namespace Ukubola.EditorTools
         }
         public static void Record()
         {
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             var files=Directory.GetFiles(UkubolaEvolutionArt.Root,"*",SearchOption.AllDirectories)
                 .Concat(Directory.GetFiles("Assets/_UKUBOLA/Scenes/Evolution","*",SearchOption.AllDirectories))
                 .Select(p=>p.Replace('\\','/')).Where(p=>Owned(p)&&p!=Path&&p!=Path+".meta"&&!p.Contains(".staging.")).OrderBy(p=>p,StringComparer.Ordinal);
-            var manifest=new Manifest{unity=Application.unityVersion,parameters=new[]{"grid=.25m","world=640x360 medium","art seed=1600..2005","room=18x28m","lightmaps=8 texels/m 512","characters=Guard,Imp"},files=files.Select(p=>new Entry{path=p,sha256=UkubolaAutomation.HashFile(p)}).ToArray()};
+            var sources=new[]{"Assets/_UKUBOLA/Editor/UkubolaEvolutionArt.cs","Assets/_UKUBOLA/Editor/UkubolaEvolutionScene.cs","Assets/_UKUBOLA/Editor/UkubolaEvolutionSlice.cs","Assets/_UKUBOLA/Editor/UkubolaPixelSigns.cs","Assets/_UKUBOLA/Editor/Importing/EvolutionTextureImporter.cs","Tools/Generate-UkubolaArt.py"};
+            var manifest=new Manifest{unity=Application.unityVersion,parameters=new[]{"grid=.25m","world=640x360 medium","art seed=1600..2005","room=18x28m","slice=18x51m","lightmaps=8 texels/m 512","characters=Guard,Imp","source hashes=UTF8 without BOM, LF"},normalizedSources=sources.Select(p=>new Entry{path=p,sha256=Ukubola.Persistence.SaveStore.Hash(File.ReadAllText(p).Replace("\r\n","\n"))}).ToArray(),files=files.Select(p=>new Entry{path=p,sha256=UkubolaAutomation.HashFile(p)}).ToArray()};
             File.WriteAllText(Path,JsonUtility.ToJson(manifest,true));
         }
         public static void RestoreKnownBuildPrefilters()

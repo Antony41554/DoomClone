@@ -19,7 +19,7 @@ using Object = UnityEngine.Object;
 
 namespace Ukubola.EditorTools
 {
-    public static class UkubolaEvolutionScene
+    public static partial class UkubolaEvolutionScene
     {
         public const string RoomPath = "Assets/_UKUBOLA/Scenes/Evolution/ArtRoom.unity";
         private const string Stamp = Art.Root + "/ArtRoom.scene.sha256.txt";
@@ -206,10 +206,9 @@ namespace Ukubola.EditorTools
             }
             EditorUtility.SetDirty(profile);
         }
-        private static void Label(Transform parent,string text,Vector3 position,float yaw,float size,Color color)
+        private static void Label(Transform parent,string text,Vector3 position,float yaw,float size,Color color,float maxWidth=7)
         {
-            var go=new GameObject("Industrial Sign");go.layer=world;go.transform.SetParent(parent,false);go.transform.localPosition=position;go.transform.localRotation=Quaternion.Euler(0,yaw,0);
-            var mesh=go.AddComponent<TextMesh>();mesh.text=text;mesh.font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");mesh.fontSize=64;mesh.characterSize=size;mesh.anchor=TextAnchor.MiddleCenter;mesh.alignment=TextAlignment.Center;mesh.color=color;go.GetComponent<MeshRenderer>().sharedMaterial=mesh.font.material;
+            UkubolaPixelSigns.Create(parent,text,position,yaw,size*5,color,maxWidth);
         }
         private static void BuildLighting(Transform parent)
         {

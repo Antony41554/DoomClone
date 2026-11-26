@@ -1,0 +1,13 @@
+{
+  "mode":"route", "scene":"OutpostSlice", "seed":1600,
+  "warmupFrames":3,"sampleFrames":1,"freezeActors":false,
+  "selectedWeapon":-1,"verifyRoute":true,"quality":1,
+  "poses":[
+    {"position":{"x":0,"y":0.03,"z":2.5},"yaw":0},
+    {"position":{"x":3,"y":0.03,"z":14},"yaw":0},
+    {"position":{"x":-6,"y":0.03,"z":38},"yaw":65},
+    {"position":{"x":6,"y":2.47,"z":26.5},"yaw":210},
+    {"position":{"x":-7,"y":0.03,"z":20},"yaw":0},
+    {"position":{"x":-6,"y":0.03,"z":45},"yaw":55}
+  ]
+}

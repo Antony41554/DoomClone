@@ -30,6 +30,9 @@ namespace Ukubola
         public int quality=-1;
         public bool classicAspect;
         public int captureWidth, captureHeight;
+        public bool verifyMission;
+        public bool verifyRoute;
+        public int seed=1600;
     }
     [Serializable]
     public sealed class QaRunResult
@@ -37,6 +40,7 @@ namespace Ukubola
         public bool success;
         public string mode, scene, error, device, unity, utc;
         public string captureMethod, timingKind;
+        public string environment;
         public int frames;
         public int outputWidth,outputHeight,windowWidth,windowHeight,internalWidth,internalHeight,quality;
         public float averageMs, p95Ms, p99Ms;

@@ -25,7 +25,8 @@ namespace Ukubola.World
         private void OnDisable(){if(actions){actions.Disable();Destroy(actions);}actions=null;use=null;}
         private void LateUpdate()
         {
-            if(use==null || !weapons.CanControl || !use.WasPressedThisFrame())return;
+            var input=GetComponent<PlayerInputReader>();
+            if(use==null || !weapons.CanControl || !(input.HasQaCommands?input.QaCommands.UsePressed:use.WasPressedThisFrame()))return;
             var camera=weapons.AimCamera;
             if(HitscanAttack.FirstHit(camera.transform.position,camera.transform.forward,2.6f,weapons.HitMask,gameObject,out var hit))
             {

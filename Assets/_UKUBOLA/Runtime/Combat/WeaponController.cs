@@ -40,7 +40,16 @@ namespace Ukubola.Combat
         public int Shots { get; private set; }
         public int DamageHits { get; private set; }
         public string LastResult { get; private set; } = "Ready";
-        public bool CanControl => input && input.isActiveAndEnabled && input.IsReady && input.Captured && health && !health.IsDead && Application.isFocused && Time.timeScale > 0f;
+        public float RemainingCooldown=>(float)Math.Max(0,nextShot-Time.timeAsDouble);
+        public void SetQaSeed(int seed)
+        {if(!QaEnvironment.Active)throw new InvalidOperationException("Weapon test seed requires isolated QA.");random=new System.Random(seed);}
+        public void RestoreCooldown(float value)
+        {
+            if(!Ukubola.Persistence.SaveData.Range(value,0,60))throw new ArgumentOutOfRangeException(nameof(value));
+            nextShot=Time.timeAsDouble+value;flashUntil=0;armed=false;queuedSlot=0;
+            if(weaponView)weaponView.ResetTransient();
+        }
+        public bool CanControl => input && input.isActiveAndEnabled && input.IsReady && input.Captured && health && !health.IsDead && (Application.isFocused||input.HasQaCommands) && Time.timeScale > 0f;
         public void Configure(WeaponDefinition a, WeaponDefinition b, Camera camera, WeaponView view, int mask, int targets)
         { pistol = a; shotgun = b; aimCamera = camera; weaponView = view; hitMask = mask; targetMask = targets; }
         private void Awake()
@@ -82,6 +91,7 @@ namespace Ukubola.Combat
             if (!CanControl || fire == null) { armed = false; queuedSlot = 0; }
             else
             {
+                if(input.HasQaCommands&&input.QaCommands.WeaponSlot>0)queuedSlot=input.QaCommands.WeaponSlot;
                 if(queuedSlot==1){var saw=FindWeapon(WeaponId.Chainsaw);var fist=FindWeapon(WeaponId.Fist);if(selected==saw||!Select(saw))Select(fist);}
                 if (queuedSlot == 2) Select(pistol);
                 if (queuedSlot == 3) Select(shotgun);
@@ -90,7 +100,8 @@ namespace Ukubola.Combat
                 if(queuedSlot==6)Select(FindWeapon(WeaponId.PlasmaRifle));
                 if(queuedSlot==7)Select(FindWeapon(WeaponId.EnergyCannon));
                 queuedSlot = 0;
-                if (!fire.IsPressed()) armed = true; // First capture click is never a shot.
+                bool pressed=input.HasQaCommands?input.QaCommands.FireHeld:fire.IsPressed();
+                if (!pressed) armed = true; // First capture click is never a shot.
                 else if (armed && HitscanAttack.Ready(now, nextShot)) Shoot(now);
             }
             if (!selected || !inventory.HasWeapon(selected.Weapon)) selected = pistol;
