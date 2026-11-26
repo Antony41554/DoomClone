@@ -1,9 +1,10 @@
 using UnityEngine;
 using Ukubola.Combat;
+using Ukubola.Rendering;
 namespace Ukubola.Enemies
 {
     [RequireComponent(typeof(Health),typeof(EnemyMotor),typeof(EnemyAttack))]
-    [RequireComponent(typeof(CapsuleCollider),typeof(EnemySpriteView))]
+    [RequireComponent(typeof(CapsuleCollider))]
     public sealed class EnemyBrain : MonoBehaviour
     {
         [SerializeField] private EnemyDefinition definition;
@@ -11,7 +12,7 @@ namespace Ukubola.Enemies
         [SerializeField] private Camera viewer;
         [SerializeField] private NoiseEmitter noise;
         [SerializeField] private EnemyNavigation navigation;
-        private Health health; private EnemyMotor motor; private EnemyAttack attack; private EnemySpriteView visual; private CapsuleCollider body;
+        private Health health; private EnemyMotor motor; private EnemyAttack attack; private IEnemyPresentation visual; private CapsuleCollider body;
         private Vector3 spawn,lastKnown; private Quaternion spawnRotation;
         private bool alerted, started; private Health rival;
         public Health CombatTarget=>rival&&!rival.IsDead?rival:target; private int heard;
@@ -22,12 +23,12 @@ namespace Ukubola.Enemies
         public int Attacks {get;private set;}
         public void SetDefinition(EnemyDefinition value)=>definition=value;
         public void Bind(Health player,Camera camera,NoiseEmitter emitter,EnemyNavigation nav) { target=player; viewer=camera; noise=emitter; navigation=nav; }
-        private void Awake() { health=GetComponent<Health>(); motor=GetComponent<EnemyMotor>(); attack=GetComponent<EnemyAttack>(); visual=GetComponent<EnemySpriteView>(); body=GetComponent<CapsuleCollider>(); spawn=transform.position; spawnRotation=transform.rotation; }
+        private void Awake() { health=GetComponent<Health>(); motor=GetComponent<EnemyMotor>(); attack=GetComponent<EnemyAttack>(); foreach(var component in GetComponents<MonoBehaviour>()) if(component is IEnemyPresentation presentation){visual=presentation;break;} body=GetComponent<CapsuleCollider>(); spawn=transform.position; spawnRotation=transform.rotation; }
         private void OnEnable() { health.Damaged+=OnDamage; health.Died+=OnDeath; }
         private void OnDisable() { if(health) {health.Damaged-=OnDamage;health.Died-=OnDeath;} if(motor)motor.Disable(); }
         private void Start()
         {
-            if(!definition || !definition.IsValid || !target || !viewer || !noise || !navigation || !navigation.Ready || !visual.IsValid) { Debug.LogError("[UKUBOLA P06] Invalid enemy references: "+name,this); enabled=false; return; }
+            if(!definition || !definition.IsValid || !target || !viewer || !noise || !navigation || !navigation.Ready || visual==null || !visual.IsValid) { Debug.LogError("[UKUBOLA P06] Invalid enemy references: "+name,this); enabled=false; return; }
             visual.Bind(viewer); started=true; ResetEnemy();
         }
         public static bool Detect(float distance,float radius,bool visible,bool inCone)=>distance<=radius && visible && inCone;

@@ -5,10 +5,12 @@ using Ukubola.Player;
 namespace Ukubola.Combat
 {
     [DisallowMultipleComponent]
-    public sealed class WeaponView : MonoBehaviour
+    public sealed class WeaponView : MonoBehaviour, Ukubola.Rendering.IWeaponPresentation
     {
         [SerializeField] private RawImage image;
         public RawImage Image => image;
+        private Ukubola.Rendering.IWeaponPresentation alternative;
+        public void SetPresentation(Ukubola.Rendering.IWeaponPresentation value) { alternative=value; if(image && value!=null)image.enabled=false; }
         private WeaponDefinition lastWeapon;
         private Ukubola.Release.ReleaseArt lastArt;
         private Texture2D releaseIdle,releaseFire,releaseRecover;
@@ -16,6 +18,7 @@ namespace Ukubola.Combat
         public void Configure(RawImage target) => image = target;
         public void Present(WeaponDefinition weapon, bool alive, bool firing, float speed, float elapsed)
         {
+            if(alternative!=null){alternative.Present(weapon,alive,firing,speed,elapsed);return;}
             if (!image) return;
             image.enabled = alive && weapon != null;
             if (!image.enabled) return;

@@ -30,7 +30,7 @@ namespace Ukubola.World
         }
         public bool TryCollect(Health health, PlayerInventory inventory)
         {
-            if (collected || applying || !isActiveAndEnabled || !definition || !definition.IsValid) return false;
+            if (collected || applying || !isActiveAndEnabled || !definition || !definition.IsRuleValid) return false;
             applying = true;
             try
             {

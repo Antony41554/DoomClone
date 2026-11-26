@@ -2,7 +2,7 @@ using UnityEngine;
 using Ukubola.Rendering;
 namespace Ukubola.Enemies
 {
-    public sealed class EnemySpriteView : MonoBehaviour
+    public sealed class EnemySpriteView : MonoBehaviour, IEnemyPresentation
     {
         [SerializeField] private SpriteRenderer visual;
         [SerializeField] private Billboard billboard;

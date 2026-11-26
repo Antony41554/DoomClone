@@ -1,0 +1,6 @@
+{
+  "name": "Ukubola.Runtime",
+  "rootNamespace": "Ukubola",
+  "references": ["Unity.InputSystem", "UnityEngine.UI", "Unity.RenderPipelines.Core.Runtime", "Unity.RenderPipelines.Universal.Runtime"],
+  "autoReferenced": true
+}

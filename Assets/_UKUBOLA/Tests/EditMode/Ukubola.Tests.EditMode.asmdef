@@ -1,0 +1,7 @@
+{
+  "name": "Ukubola.Tests.EditMode",
+  "references": ["Ukubola.Runtime", "Ukubola.Editor"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

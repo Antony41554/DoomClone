@@ -43,4 +43,12 @@ Los tiempos de 300 fotogramas son muestras de bucle estático; **no** se ha apro
 
 ## Continuidad
 
+### P17
+
+Primera ejecución NUnit falló en SetUp porque Test Runner crea una escena sin guardar y Unity impide otra escena aditiva. Corrección: escenas de preview aisladas, cerradas en TearDown, sin guardar ni sustituir escenas del usuario.
+
+- EditMode `1d5b9588244a4546b714b41b6c44d253`: 10/10. Renombrar/reordenar, restaurar sin repetir acciones, conjuntos inválidos, IDs duplicados, ciclos, sectores desconectados, corrupción/backup, números/versiones inválidos, revisión e importación v1.
+- ValidateLegacy `bfbf30db03174a35bbad862a5883cbd7`: referencias, rutas y firmas correctas después de separar ensamblados.
+- PlayQa `fbe9100a31bd4af6b60d63d05934977b`: E1M1 se ejecuta y captura con los adaptadores y ensamblados nuevos; presentación anterior conservada. P17 base aceptada; integración de jugador/mundo v2 se comprobará en P19.
+
 Leer PLAN_MAESTRO, ESTADO_Y_CAMBIOS, DECISIONES y este archivo. Comprobar Git y logs actuales; verificar copia/guardados con Tools/Verify-UkubolaBaseline.py. Inspeccionar journal y resultados antes de reenviar un trabajo. Reanudar la primera fase no aceptada, completar sus pruebas y registrar evidencia. No repetir una mutación interrumpida sin inspeccionar sus salidas. Conservar cambios del usuario. En cada cierre registrar commit, fase aceptada, cambios, pruebas, defectos y siguiente operación concreta.

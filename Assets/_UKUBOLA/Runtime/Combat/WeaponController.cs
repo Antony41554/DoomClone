@@ -49,7 +49,7 @@ namespace Ukubola.Combat
         {
             try
             {
-                if (!pistol || !shotgun || !pistol.IsValid || !shotgun.IsValid || !aimCamera || !weaponView || !input.Actions) throw new InvalidOperationException("Invalid weapon references.");
+                if (!pistol || !shotgun || !pistol.IsRuleValid || !shotgun.IsRuleValid || !aimCamera || !weaponView || !input.Actions) throw new InvalidOperationException("Invalid weapon references.");
                 actions = Instantiate(input.Actions); actions.Disable();
                 var map = actions.FindActionMap("Gameplay", true);
                 fire = map.FindAction("Fire", true); slot = map.FindAction("WeaponSlot", true);

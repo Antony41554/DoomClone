@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEditor.SceneManagement;
+using UnityEditor.TestTools.TestRunner.Api;
 using UnityEngine;
 using Ukubola.Persistence;
 
@@ -101,6 +102,7 @@ namespace Ukubola.EditorTools
             {
                 case "Audit": return Audit();
                 case "SelfTests": return UkubolaEvolutionTests.Run();
+                case "RunEditTests": return RunEditTests(job.id);
                 case "ValidateLegacy": WithScenes(UkubolaPersistenceSetup.ValidateAll); return "Legacy scene references, routes and save signatures valid.";
                 case "BuildLegacy": return BuildLegacy(job.id);
                 case "RestoreBuildSettings":
@@ -111,6 +113,28 @@ namespace Ukubola.EditorTools
                 case "Fail": throw new InvalidOperationException("Intentional failure to verify failure reporting.");
                 default: throw new InvalidOperationException("Unknown operation: " + job.operation);
             }
+        }
+        private sealed class TestResults : ICallbacks
+        {
+            public ITestResultAdaptor Result;
+            public void RunStarted(ITestAdaptor tests) { }
+            public void RunFinished(ITestResultAdaptor result) { Result = result; }
+            public void TestStarted(ITestAdaptor test) { }
+            public void TestFinished(ITestResultAdaptor result) { }
+        }
+        private static string RunEditTests(string id)
+        {
+            var api = ScriptableObject.CreateInstance<TestRunnerApi>(); var callback = new TestResults(); api.RegisterCallbacks(callback);
+            try
+            {
+                api.Execute(new ExecutionSettings(new Filter { testMode = TestMode.EditMode, assemblyNames = new[] { "Ukubola.Tests.EditMode" } }) { runSynchronously = true });
+                Check(callback.Result != null, "Test runner did not complete synchronously.");
+                string folder = Path.Combine(Evidence, id); Directory.CreateDirectory(folder);
+                TestRunnerApi.SaveResultToFile(callback.Result, Path.Combine(folder, "edit-tests.xml"));
+                Check(callback.Result.FailCount == 0 && callback.Result.PassCount > 0, "EditMode tests failed; inspect " + folder);
+                return callback.Result.PassCount + " EditMode tests passed; XML: " + folder;
+            }
+            finally { api.UnregisterCallbacks(callback); UnityEngine.Object.DestroyImmediate(api); }
         }
         private static void WithScenes(Action action)
         {
