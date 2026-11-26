@@ -1,0 +1,5 @@
+{
+  "name": "Ukubola.Importing",
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

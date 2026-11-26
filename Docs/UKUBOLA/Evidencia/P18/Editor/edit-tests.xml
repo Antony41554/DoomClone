@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Passed" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:31Z" duration="0.8191536">
+  <test-suite type="TestSuite" id="1000" name="DoomClone" fullname="DoomClone" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:31Z" duration="0.819154" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1020" name="Ukubola.Tests.EditMode.dll" fullname="C:/Users/Anthony/Unity/DoomClone/Library/ScriptAssemblies/Ukubola.Tests.EditMode.dll" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:31Z" duration="0.798061" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="19404" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1021" name="Ukubola" fullname="Ukubola" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:31Z" duration="0.796121" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1022" name="Tests" fullname="Ukubola.Tests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:31Z" duration="0.794698" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1002" name="MissionPersistenceTests" fullname="Ukubola.Tests.MissionPersistenceTests" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.294653" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1010" name="CorruptPrimaryUsesBackupAndNeverOverwritesItWithCorruption" fullname="Ukubola.Tests.MissionPersistenceTests.CorruptPrimaryUsesBackupAndNeverOverwritesItWithCorruption" methodname="CorruptPrimaryUsesBackupAndNeverOverwritesItWithCorruption" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="2143988885" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.148505" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="CyclicMechanismsAreRejected" fullname="Ukubola.Tests.MissionPersistenceTests.CyclicMechanismsAreRejected" methodname="CyclicMechanismsAreRejected" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="272162905" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.012602" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="DuplicateIdentitiesAreRejected" fullname="Ukubola.Tests.MissionPersistenceTests.DuplicateIdentitiesAreRejected" methodname="DuplicateIdentitiesAreRejected" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="683053543" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.002635" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="InvalidEntitySetIsRejectedBeforeAnyMutation" fullname="Ukubola.Tests.MissionPersistenceTests.InvalidEntitySetIsRejectedBeforeAnyMutation" methodname="InvalidEntitySetIsRejectedBeforeAnyMutation" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="1341992948" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.005527" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="LegacyImportRestartsAtEntryInsteadOfTransplantingOldPosition" fullname="Ukubola.Tests.MissionPersistenceTests.LegacyImportRestartsAtEntryInsteadOfTransplantingOldPosition" methodname="LegacyImportRestartsAtEntryInsteadOfTransplantingOldPosition" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="1837310951" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.034332" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="RenameAndReorderDoNotChangePersistenceIdentity" fullname="Ukubola.Tests.MissionPersistenceTests.RenameAndReorderDoNotChangePersistenceIdentity" methodname="RenameAndReorderDoNotChangePersistenceIdentity" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="1210242925" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.008375" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="RestoringMechanismsDoesNotReplayActions" fullname="Ukubola.Tests.MissionPersistenceTests.RestoringMechanismsDoesNotReplayActions" methodname="RestoringMechanismsDoesNotReplayActions" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="510020031" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.006068" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="RevisionMismatchDoesNotAlterWorld" fullname="Ukubola.Tests.MissionPersistenceTests.RevisionMismatchDoesNotAlterWorld" methodname="RevisionMismatchDoesNotAlterWorld" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="967227182" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.004638" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="SectorGraphMustBeConnected" fullname="Ukubola.Tests.MissionPersistenceTests.SectorGraphMustBeConnected" methodname="SectorGraphMustBeConnected" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="2068778936" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.003655" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="UnmetConditionsDoNotConsumeOneShotBinding" fullname="Ukubola.Tests.MissionPersistenceTests.UnmetConditionsDoNotConsumeOneShotBinding" methodname="UnmetConditionsDoNotConsumeOneShotBinding" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="1168074872" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.003728" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="UnsupportedVersionAndInvalidNumbersAreRejectedWithoutReplacingSave" fullname="Ukubola.Tests.MissionPersistenceTests.UnsupportedVersionAndInvalidNumbersAreRejectedWithoutReplacingSave" methodname="UnsupportedVersionAndInvalidNumbersAreRejectedWithoutReplacingSave" classname="Ukubola.Tests.MissionPersistenceTests" runstate="Runnable" seed="2120262596" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.018290" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1014" name="PresentationTests" fullname="Ukubola.Tests.PresentationTests" classname="Ukubola.Tests.PresentationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:31Z" duration="0.494605" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1018" name="IndustrialSceneHasBakedLightingAndCompleteCharacterViews" fullname="Ukubola.Tests.PresentationTests.IndustrialSceneHasBakedLightingAndCompleteCharacterViews" methodname="IndustrialSceneHasBakedLightingAndCompleteCharacterViews" classname="Ukubola.Tests.PresentationTests" runstate="Runnable" seed="1464395317" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.126318" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="LuminairesAndVisorsRemainEmissiveAfterImport" fullname="Ukubola.Tests.PresentationTests.LuminairesAndVisorsRemainEmissiveAfterImport" methodname="LuminairesAndVisorsRemainEmissiveAfterImport" classname="Ukubola.Tests.PresentationTests" runstate="Runnable" seed="260715539" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:30Z" duration="0.031687" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="PbrMapsUseCorrectColorSpacesAndMipmaps" fullname="Ukubola.Tests.PresentationTests.PbrMapsUseCorrectColorSpacesAndMipmaps" methodname="PbrMapsUseCorrectColorSpacesAndMipmaps" classname="Ukubola.Tests.PresentationTests" runstate="Runnable" seed="565694500" result="Passed" start-time="2026-11-26 11:35:30Z" end-time="2026-11-26 11:35:31Z" duration="0.317894" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="QualityProfilesKeepSquarePixelsAtBothAspects" fullname="Ukubola.Tests.PresentationTests.QualityProfilesKeepSquarePixelsAtBothAspects" methodname="QualityProfilesKeepSquarePixelsAtBothAspects" classname="Ukubola.Tests.PresentationTests" runstate="Runnable" seed="1996298992" result="Passed" start-time="2026-11-26 11:35:31Z" end-time="2026-11-26 11:35:31Z" duration="0.003061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="QualityRenderersOwnTheirFeaturesWithoutChangingLegacyRenderer" fullname="Ukubola.Tests.PresentationTests.QualityRenderersOwnTheirFeaturesWithoutChangingLegacyRenderer" methodname="QualityRenderersOwnTheirFeaturesWithoutChangingLegacyRenderer" classname="Ukubola.Tests.PresentationTests" runstate="Runnable" seed="1155615662" result="Passed" start-time="2026-11-26 11:35:31Z" end-time="2026-11-26 11:35:31Z" duration="0.006824" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Anthony/AppData/LocalLow/DefaultCompany/DoomClone\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

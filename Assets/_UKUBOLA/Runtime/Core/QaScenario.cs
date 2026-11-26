@@ -14,6 +14,8 @@ using Ukubola.UI;
 namespace Ukubola
 {
     [Serializable]
+    public sealed class QaPose { public Vector3 position; public float yaw; }
+    [Serializable]
     public sealed class QaScenario
     {
         public string mode = "capture";
@@ -21,6 +23,13 @@ namespace Ukubola
         public int warmupFrames = 60;
         public int sampleFrames = 300;
         public float[] yaw = { 0, 60, 120, 180, 240, 300 };
+        public bool freezeActors;
+        public QaPose[] poses;
+        public int selectedWeapon=-1;
+        public bool verifyArtRoom;
+        public int quality=-1;
+        public bool classicAspect;
+        public int captureWidth, captureHeight;
     }
     [Serializable]
     public sealed class QaRunResult
@@ -29,10 +38,12 @@ namespace Ukubola
         public string mode, scene, error, device, unity, utc;
         public string captureMethod, timingKind;
         public int frames;
+        public int outputWidth,outputHeight,windowWidth,windowHeight,internalWidth,internalHeight,quality;
         public float averageMs, p95Ms, p99Ms;
         public long allocatedBytes;
         public string[] captures;
         public bool snapshotRoundTrip;
+        public string[] behaviorChecks;
     }
 
 }

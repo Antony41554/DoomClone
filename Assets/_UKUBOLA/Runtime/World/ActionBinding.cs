@@ -42,12 +42,14 @@ namespace Ukubola.World
             ValidateBinding(); dispatching = true;
             try
             {
+                bool executed=false;
                 foreach (var a in actions)
                 {
                     if (!string.IsNullOrEmpty(a.conditionFlag) && (!Context || !Context.Flag(a.conditionFlag))) continue;
                     ((IWorldActionTarget)a.target).Execute(a.verb, a.value);
+                    executed=true;
                 }
-                fired = true;
+                if(executed)fired = true;
             }
             finally { dispatching = false; }
         }

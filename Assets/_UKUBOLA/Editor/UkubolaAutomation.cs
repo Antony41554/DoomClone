@@ -25,8 +25,15 @@ namespace Ukubola.EditorTools
         private static string Journal => Path.Combine(Queue, "active.json");
         private static readonly string Boot = Guid.NewGuid().ToString("N");
         private static bool busy;
+        internal static string ArtShaderMarker=>Path.Combine(Queue,"art-preview-shaders.txt");
+        internal static bool ArtPreviewBuildActive
+        {
+            get=>File.Exists(ArtShaderMarker)||SessionState.GetBool("UKUBOLA.ArtPreviewBuildActive",false);
+            private set{SessionState.SetBool("UKUBOLA.ArtPreviewBuildActive",value);if(!value&&File.Exists(ArtShaderMarker))File.Delete(ArtShaderMarker);}
+        }
         private static double next, started;
-        private static string sourceHash = SourceHash();
+        private static string sourceHash;
+        private static string refreshedRequest,refreshedSources;
         private static string SourceHash()
         {
             string sources = string.Join("\n", Directory.GetFiles(Application.dataPath, "*", SearchOption.AllDirectories)
@@ -34,7 +41,7 @@ namespace Ukubola.EditorTools
                 .OrderBy(p => p, StringComparer.Ordinal).Select(p => p + ":" + HashFile(p)));
             return SaveStore.Hash(sources);
         }
-        static UkubolaAutomation() { EditorApplication.update += Tick; }
+        static UkubolaAutomation() { if(AssetDatabase.IsAssetImportWorkerProcess())return;sourceHash=SourceHash();next=EditorApplication.timeSinceStartup+3;EditorApplication.update += Tick; }
         private static void Write(string path, object value)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path)); string temporary = path + ".writing";
@@ -57,13 +64,20 @@ namespace Ukubola.EditorTools
                 var state = JsonUtility.FromJson<EvolutionJobState>(File.ReadAllText(Journal));
                 if (state.phase == "reload" && state.boot != Boot) { Finish(state.job, true, "Checkpoint resumed after domain reload; operation not repeated."); return; }
                 if (state.phase == "play") { PollPlay(state); return; }
-                if (state.phase == "executing" && state.boot != Boot) { Finish(state.job, false, "Interrupted during execution. Inspect outputs before submitting a new job; no automatic replay."); return; }
+                if (state.phase == "executing" && state.boot != Boot)
+                { if(BuildPipeline.isBuildingPlayer)return;ArtPreviewBuildActive=false;Finish(state.job, false, "Interrupted during execution. Inspect outputs before submitting a new job; no automatic replay."); return; }
                 return;
             }
+            if(!BuildPipeline.isBuildingPlayer&&File.Exists(ArtShaderMarker))ArtPreviewBuildActive=false;
             if (EditorApplication.isPlayingOrWillChangePlaymode) return;
             string request = Directory.GetFiles(Queue, "*.job.json").OrderBy(p => p, StringComparer.Ordinal).FirstOrDefault();
             if (request == null) return;
             string currentSources = SourceHash();
+            if(refreshedRequest!=request||refreshedSources!=currentSources)
+            {
+                refreshedRequest=request;refreshedSources=currentSources;sourceHash=currentSources;
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);next=EditorApplication.timeSinceStartup+3;return;
+            }
             if (currentSources != sourceHash)
             {
                 sourceHash = currentSources;
@@ -76,6 +90,7 @@ namespace Ukubola.EditorTools
                 job = JsonUtility.FromJson<EvolutionJob>(File.ReadAllText(request));
                 Check(job != null && Guid.TryParseExact(job.id, "N", out _) && !string.IsNullOrEmpty(job.operation), "Malformed job.");
                 if (File.Exists(Path.Combine(Evidence, job.id, "result.json"))) { File.Move(request, request + ".duplicate-" + Guid.NewGuid().ToString("N")); return; }
+                Check(!EditorUtility.scriptCompilationFailed, "Script compilation failed; no operation executed. Inspect Logs/Editor.log.");
                 CleanScenes();
                 var state = new EvolutionJobState { job = job, phase = "executing", boot = Boot, startedUtc = DateTime.UtcNow.Ticks, originalScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path };
                 Write(Journal, state); File.Move(request, request + ".claimed"); started = EditorApplication.timeSinceStartup;
@@ -103,12 +118,26 @@ namespace Ukubola.EditorTools
                 case "Audit": return Audit();
                 case "SelfTests": return UkubolaEvolutionTests.Run();
                 case "RunEditTests": return RunEditTests(job.id);
+                case "BuildArtRoom": return UkubolaEvolutionScene.BuildArtRoom();
+                case "BakeArtRoom": return UkubolaEvolutionScene.BakeArtRoom();
+                case "BuildArtPreview": return BuildArtPreview(job.id);
+                case "BuildArtPreviewV2": return BuildArtPreview(job.id);
                 case "ValidateLegacy": WithScenes(UkubolaPersistenceSetup.ValidateAll); return "Legacy scene references, routes and save signatures valid.";
                 case "BuildLegacy": return BuildLegacy(job.id);
                 case "RestoreBuildSettings":
                     var preloaded = PlayerSettings.GetPreloadedAssets();
                     Check(preloaded.Length == 0 || preloaded.Length == 1 && AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(preloaded[0])) == "052faaac586de48259a63d0c4782560b", "Preloaded assets differ from the known Input System build side effect; preserving settings.");
                     PlayerSettings.SetPreloadedAssets(Array.Empty<UnityEngine.Object>()); AssetDatabase.SaveAssets();
+                    var settingsData=new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/ProjectSettings.asset")[0]);var apiEntries=settingsData.FindProperty("m_BuildTargetGraphicsAPIs");
+                    for(int i=apiEntries.arraySize-1;i>=0;i--)
+                    {
+                        var entry=apiEntries.GetArrayElementAtIndex(i);if(entry.FindPropertyRelative("m_BuildTarget").stringValue!="WindowsStandaloneSupport")continue;
+                        var apis=entry.FindPropertyRelative("m_APIs");
+                        Check(entry.FindPropertyRelative("m_Automatic").boolValue&&apis.isArray&&apis.arraySize==2&&apis.GetArrayElementAtIndex(0).intValue==18&&apis.GetArrayElementAtIndex(1).intValue==2,"Graphics entry differs from the known default-API build side effect; preserving settings.");
+                        apiEntries.DeleteArrayElementAtIndex(i);
+                    }
+                    settingsData.ApplyModifiedPropertiesWithoutUndo();AssetDatabase.SaveAssets();
+                    if(File.Exists(EvolutionManifest.Path))EvolutionManifest.RestoreKnownBuildPrefilters();
                     return "Restored baseline empty preloadedAssets using PlayerSettings API.";
                 case "Fail": throw new InvalidOperationException("Intentional failure to verify failure reporting.");
                 default: throw new InvalidOperationException("Unknown operation: " + job.operation);
@@ -173,11 +202,61 @@ namespace Ukubola.EditorTools
             });
             UkubolaFinalBuild.Package(folder, folder + ".zip"); return folder;
         }
+        private static string BuildArtPreview(string id)
+        {
+            string folder=Path.Combine(Project,"Builds","UKUBOLA_ArtPreview_"+id),executable=Path.Combine(folder,"UKUBOLA.exe");
+            Check(!Directory.Exists(folder),"Preview build destination already exists.");EvolutionManifest.Validate();
+            var preloaded=PlayerSettings.GetPreloadedAssets();
+            var graphics=PlayerSettings.GetGraphicsAPIs(BuildTarget.StandaloneWindows64);bool defaultGraphics=PlayerSettings.GetUseDefaultGraphicsAPIs(BuildTarget.StandaloneWindows64);
+            var qualityAsset=AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/QualitySettings.asset")[0];string qualitySnapshot=EditorJsonUtility.ToJson(qualityAsset);
+            var playerSettingsAsset=AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/ProjectSettings.asset")[0];string playerSettingsSnapshot=EditorJsonUtility.ToJson(playerSettingsAsset);
+            var graphicsSettingsAsset=AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/GraphicsSettings.asset")[0];string graphicsSettingsSnapshot=EditorJsonUtility.ToJson(graphicsSettingsAsset);
+            var profile=AssetDatabase.LoadAssetAtPath<Ukubola.Rendering.PresentationProfile>(UkubolaEvolutionArt.Root+"/Presentation.asset");
+            var pipelineSnapshots=profile.pipelines.Select(p=>EditorJsonUtility.ToJson(p)).ToArray();
+            try
+            {
+                var qualityData=new SerializedObject(qualityAsset);var levels=qualityData.FindProperty("m_QualitySettings");while(levels.arraySize<3)levels.InsertArrayElementAtIndex(levels.arraySize-1);levels.arraySize=3;
+                for(int q=0;q<3;q++)
+                {
+                    var level=levels.GetArrayElementAtIndex(q);level.FindPropertyRelative("name").stringValue="Evolution "+q;
+                    level.FindPropertyRelative("customRenderPipeline").objectReferenceValue=profile.pipelines[q];
+                    level.FindPropertyRelative("excludedTargetPlatforms").arraySize=0;
+                }
+                qualityData.ApplyModifiedPropertiesWithoutUndo();PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.StandaloneWindows64,false);PlayerSettings.SetGraphicsAPIs(BuildTarget.StandaloneWindows64,new[]{UnityEngine.Rendering.GraphicsDeviceType.Direct3D11});
+                PlayerSettings.strictShaderVariantMatching=true;
+                EvolutionShaderStripper.ResetCounts();ArtPreviewBuildActive=true;
+                WithScenes(()=>{
+                    EditorSceneManager.OpenScene(UkubolaEvolutionScene.RoomPath);UkubolaEvolutionScene.ValidateArtRoom();
+                    EvolutionShaderStripper.ConfigureMaterials(UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(r=>r.GetComponentsInChildren<Renderer>(true)).SelectMany(r=>r.sharedMaterials));
+                    Check(LightmapSettings.lightmaps.Length>0,"Bake the art room before building a preview.");
+                    var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{UkubolaEvolutionScene.RoomPath},target=BuildTarget.StandaloneWindows64,locationPathName=executable,options=BuildOptions.Development|BuildOptions.CleanBuildCache});
+                    Check(report.summary.result==BuildResult.Succeeded,"Art preview Windows build failed: "+report.summary.result);
+                    Check(EvolutionShaderStripper.Kept==0||EvolutionShaderStripper.ForwardVertex>0&&EvolutionShaderStripper.ForwardFragment>0,"Art preview stripped every Lit forward variant; rejecting this build before QA.");
+                });
+            }
+            finally
+            {
+                ArtPreviewBuildActive=false;EditorJsonUtility.FromJsonOverwrite(qualitySnapshot,qualityAsset);EditorUtility.SetDirty(qualityAsset);
+                PlayerSettings.SetGraphicsAPIs(BuildTarget.StandaloneWindows64,graphics);PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.StandaloneWindows64,defaultGraphics);
+                PlayerSettings.SetPreloadedAssets(preloaded);AssetDatabase.SaveAssets();
+                EditorJsonUtility.FromJsonOverwrite(playerSettingsSnapshot,playerSettingsAsset);EditorUtility.SetDirty(playerSettingsAsset);AssetDatabase.SaveAssets();
+                EditorJsonUtility.FromJsonOverwrite(graphicsSettingsSnapshot,graphicsSettingsAsset);EditorUtility.SetDirty(graphicsSettingsAsset);AssetDatabase.SaveAssets();
+                for(int q=0;q<profile.pipelines.Length;q++){EditorJsonUtility.FromJsonOverwrite(pipelineSnapshots[q],profile.pipelines[q]);EditorUtility.SetDirty(profile.pipelines[q]);}
+                AssetDatabase.SaveAssets();
+            }
+            Write(Path.Combine(folder,"BUILD_COMPLETE.json"),new EvolutionJobResult{id=id,operation="BuildArtPreview",status="succeeded",detail=HashFile(executable)+" | shader variants removed="+EvolutionShaderStripper.Removed+", kept="+EvolutionShaderStripper.Kept+", material masks="+EvolutionShaderStripper.MaterialMasks,utc=DateTime.UtcNow.ToString("O")});
+            return executable;
+        }
         private static void StartPlay(EvolutionJobState state)
         {
             Check(!string.IsNullOrEmpty(state.job.scene) && state.job.scene.StartsWith("Assets/_UKUBOLA/Scenes/", StringComparison.Ordinal) && AssetDatabase.LoadAssetAtPath<SceneAsset>(state.job.scene), "QA requires a known UKUBOLA scene.");
             string root = Path.Combine(Evidence, state.job.id, "qa"); Directory.CreateDirectory(root);
-            Write(Path.Combine(root, "scenario.json"), new QaScenario { scene = state.job.scene });
+            var scenario=new QaScenario { scene = state.job.scene };
+            if(state.job.scene==UkubolaEvolutionScene.RoomPath)
+            {
+                scenario=JsonUtility.FromJson<QaScenario>(File.ReadAllText(Path.Combine(Project,"Tools","QA","ArtRoom.json")));scenario.scene=state.job.scene;
+            }
+            Write(Path.Combine(root, "scenario.json"), scenario);
             File.WriteAllText(Path.Combine(Queue, "qa-root.txt"), root);
             EditorSceneManager.OpenScene(state.job.scene); state.phase = "play"; state.deadlineUtc = DateTime.UtcNow.AddMinutes(3).Ticks; Write(Journal, state); EditorApplication.isPlaying = true;
         }
@@ -214,6 +293,11 @@ namespace Ukubola.EditorTools
         [MenuItem("Tools/UKUBOLA/Evolution/Audit")] public static void QueueAudit() => Enqueue("Audit");
         [MenuItem("Tools/UKUBOLA/Evolution/Run Infrastructure Tests")] public static void QueueTests() => Enqueue("SelfTests");
         [MenuItem("Tools/UKUBOLA/Evolution/Build Conservation Copy")] public static void QueueLegacy() => Enqueue("BuildLegacy");
+        [MenuItem("Tools/UKUBOLA/Evolution/Build Art Room")] public static void QueueArtRoom() => Enqueue("BuildArtRoom");
+        [MenuItem("Tools/UKUBOLA/Evolution/Bake Art Room")] public static void QueueBakeArtRoom() => Enqueue("BakeArtRoom");
+        [MenuItem("Tools/UKUBOLA/Evolution/Capture Art Room")] public static void QueueCaptureArtRoom() => Enqueue("PlayQa",UkubolaEvolutionScene.RoomPath);
+        [MenuItem("Tools/UKUBOLA/Evolution/Run EditMode Tests")] public static void QueueEditTests() => Enqueue("RunEditTests");
+        [MenuItem("Tools/UKUBOLA/Evolution/Build Art Preview")] public static void QueueArtPreview() => Enqueue("BuildArtPreview");
         public static string Enqueue(string operation, string scene = null)
         {
             var job = new EvolutionJob { id = Guid.NewGuid().ToString("N"), operation = operation, scene = scene };

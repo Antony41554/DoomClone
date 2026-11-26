@@ -20,3 +20,13 @@ Paleta común: carbón, acero verdoso, hueso, amarillo industrial. Outpost: gris
 ## Presentación
 
 16:9 predeterminado; 4:3 opcional, sin deformación. Alturas internas 270/360/540, ancho derivado del aspecto. HUD independiente, cámara de arma con profundidad propia. Bloom contenido, Neutral, sin motion blur/TAA. SSAO por perfil; reflejos estáticos con sondas y humedad selectiva. Haces/niebla localizada en vez de volumetría global. Calidad se valida en juego, no por inventario.
+
+## Base P18 implementada
+
+`Tools/Generate-UkubolaArt.py` produce 24 familias originales de 128 px: 96 mapas PBR, dos atlas de interfaz y una textura de vapor. Semillas fijas; el manifiesto de fuentes registra hashes y rechaza recursos modificados antes de sobrescribirlos. La importación distingue albedo/emisión sRGB de normales/máscaras lineales; filtrado Point y mipmaps en materiales.
+
+`UkubolaEvolutionArt` genera meshes biselados y tubos con UV secundarias, materiales URP/Lit, Guard/Imp articulados y seis clips por modelo. La sala `Assets/_UKUBOLA/Scenes/Evolution/ArtRoom.unity` contiene un almacén industrial, pasarela/escalera, contenedores, tuberías, cableado, luminarias, señales, vapor y muestras 3D de recursos. Modelos de armas preliminares: todavía requieren el trabajo de P20.
+
+Iluminación mixta, lightmap de 512 px a 8 texels/m, 28 posiciones de Light Probes y Reflection Probe de 128 px con proyección de caja. El horneado CPU es compatible con esta instalación, aunque Unity emite una advertencia de API obsoleta. Los reflejos son estáticos. El HUD está en un Canvas separado del mundo; el retrato reutiliza el recurso original Phase15 del proyecto.
+
+Se corrigió emisión apagada por `EmissiveIsBlack` al reimportar: ahora cada material declara su participación emisiva y existe una prueba contra regresiones. Se rechazaron las primeras vistas demasiado oscuras y el patrón excesivamente ruidoso de la armadura. La comparación con opción C sigue siendo un criterio de revisión, no una equivalencia alcanzada.

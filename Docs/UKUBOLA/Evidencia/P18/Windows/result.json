@@ -1,0 +1,42 @@
+{
+  "kind": "Standalone offscreen output and UI at requested dimensions; physical window recorded separately. Physical stair/nav checks; static timing is not P26 performance acceptance",
+  "success": true,
+  "cases": [
+    {
+      "outputWidth": 1280,
+      "outputHeight": 720,
+      "success": true,
+      "name": "Low_720p",
+      "report": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\presentation-069f565c3b4a4b48a21beb4a44a007d4\\Low_720p.json",
+      "windowWidth": 1280,
+      "windowHeight": 720
+    },
+    {
+      "outputWidth": 1920,
+      "outputHeight": 1080,
+      "success": true,
+      "name": "Medium_1080p",
+      "report": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\presentation-069f565c3b4a4b48a21beb4a44a007d4\\Medium_1080p.json",
+      "windowWidth": 1920,
+      "windowHeight": 1080
+    },
+    {
+      "outputWidth": 2560,
+      "outputHeight": 1440,
+      "success": true,
+      "name": "High_1440p",
+      "report": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\presentation-069f565c3b4a4b48a21beb4a44a007d4\\High_1440p.json",
+      "windowWidth": 1920,
+      "windowHeight": 1080
+    },
+    {
+      "outputWidth": 1280,
+      "outputHeight": 960,
+      "success": true,
+      "name": "Medium_4x3",
+      "report": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\presentation-069f565c3b4a4b48a21beb4a44a007d4\\Medium_4x3.json",
+      "windowWidth": 1280,
+      "windowHeight": 960
+    }
+  ]
+}

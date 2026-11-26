@@ -1,6 +1,6 @@
 {
   "name": "Ukubola.Tests.EditMode",
-  "references": ["Ukubola.Runtime", "Ukubola.Editor"],
+  "references": ["Ukubola.Runtime", "Ukubola.Editor", "Unity.RenderPipelines.Universal.Runtime"],
   "includePlatforms": ["Editor"],
   "optionalUnityReferences": ["TestAssemblies"],
   "autoReferenced": false

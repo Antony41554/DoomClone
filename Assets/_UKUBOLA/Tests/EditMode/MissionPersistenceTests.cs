@@ -64,6 +64,15 @@ namespace Ukubola.Tests
             var a = Relay("a"); Relay("b"); context.RebuildRegistry(); var states = context.CaptureEntities();
             states[1].kind = "unknown"; Assert.Throws<InvalidOperationException>(() => context.RestoreEntities(states)); Assert.That(a.Active, Is.False);
         }
+        [Test] public void UnmetConditionsDoNotConsumeOneShotBinding()
+        {
+            var source=Relay("source");var target=Relay("target");var binding=Connect("conditional",source,target);
+            binding.Configure(source,WorldSignal.Activated,true,new[]{new WorldAction{target=target,verb=WorldVerb.On,conditionFlag="power"}});
+            context.RebuildRegistry();source.Execute(WorldVerb.On,0);
+            Assert.That(target.Active,Is.False);Assert.That(binding.Fired,Is.False);
+            source.Execute(WorldVerb.Off,0);context.SetFlag("power",true);source.Execute(WorldVerb.On,0);
+            Assert.That(target.Active,Is.True);Assert.That(binding.Fired,Is.True);
+        }
         [Test] public void DuplicateIdentitiesAreRejected()
         {
             Relay("same"); Relay("same"); Assert.Throws<InvalidOperationException>(() => context.RebuildRegistry());

@@ -1,0 +1,19 @@
+{
+  "mode": "capture",
+  "scene": "ArtRoom",
+  "warmupFrames": 60,
+  "sampleFrames": 300,
+  "freezeActors": true,
+  "selectedWeapon": 3,
+  "verifyArtRoom": true,
+  "quality": 1,
+  "classicAspect": false,
+  "poses": [
+    {"position":{"x":0,"y":0.03,"z":2.5},"yaw":0},
+    {"position":{"x":0,"y":0.03,"z":6},"yaw":0},
+    {"position":{"x":4,"y":0.03,"z":12},"yaw":70},
+    {"position":{"x":-4,"y":0.03,"z":18},"yaw":300},
+    {"position":{"x":-7,"y":2.55,"z":22},"yaw":135},
+    {"position":{"x":0,"y":0.03,"z":26},"yaw":180}
+  ]
+}

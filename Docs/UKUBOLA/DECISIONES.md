@@ -12,3 +12,8 @@
 | D008 | Cola local Editor para no cerrar ni competir con el proyecto abierto; batch alternativo con códigos de salida reales. |
 | D009 | SSR/volumetría global y dependencias externas no son requisitos. Sondas, materiales y efectos locales priorizan el hardware existente. |
 | D010 | Ninguna fase se aprueba por compilación, inventario o capturas conceptuales. Evidencia real obligatoria. |
+| D011 | P18 usa pipelines y renderers propios por perfil, sin cambiar PC_RPAsset ni sus Renderer Features. El pipeline anterior se restaura al salir de la escena. |
+| D012 | El laboratorio artístico conserva RetroDisplay desactivado como adaptador de referencias para QA; ModernDisplay controla la textura de píxeles cuadrados. No se arrastra el HUD antiguo. |
+| D013 | Escena temporal mediante Unity API, hashes de salidas y manifiestos; los cambios manuales se protegen antes de regenerar. Los bakes se ejecutan separadamente y se registran. |
+| D014 | Los informes QA distinguen el tamaño de salida renderizada y el de la ventana física. Un layout 1440p offscreen no certifica una ventana 1440p en este monitor ni rendimiento final. |
+| D015 | Contrato del build ArtPreview: conservar ShadowCaster base y todas las variantes receptoras que URP activa por perfil, aunque no haya luces Directional. El filtro solo excluye funciones ausentes (GI dinámica, SSR, irradiancia de pantalla y decals), además de combinaciones locales de materiales no presentes. No se aplica a builds de campaña. La matriz Windows decide su aceptación. |

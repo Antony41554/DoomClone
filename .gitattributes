@@ -1,0 +1,7 @@
+# Generator manifests hash exact output bytes. Preserve those bytes across checkouts.
+Tools/Generate-UkubolaArt.py -text
+Assets/_UKUBOLA/Generated/Evolution/** -text
+Assets/_UKUBOLA/Scenes/Evolution/ArtRoom.unity -text
+Assets/_UKUBOLA/Scenes/Evolution/ArtRoom.unity.meta -text
+Assets/_UKUBOLA/Scenes/Evolution/ArtRoom/** -text
+Assets/_UKUBOLA/Art/Evolution/** -text

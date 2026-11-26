@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751a94f8e7bc30944873481f9ae71e2a, type: 3}
+  m_Name: Presentation
+  m_EditorClassIdentifier: Ukubola.Runtime::Ukubola.Rendering.PresentationProfile
+  internalHeights: 0e010000680100001c020000i
+  defaultQuality: 1
+  aspect: 1.7777778
+  pipelines:
+  - {fileID: 11400000, guid: 5f49911c9313b2f4281651bde453d6e2, type: 2}
+  - {fileID: 11400000, guid: 0caf39ac36131e945bda88659afe93f8, type: 2}
+  - {fileID: 11400000, guid: 8d8856695ba98b6408cb0e8ed6d7163b, type: 2}
+  shadowedLights: 000000000200000004000000i
+  particlesPerEmitter: 0c0000001800000024000000i

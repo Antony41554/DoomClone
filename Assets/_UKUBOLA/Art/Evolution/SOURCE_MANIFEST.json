@@ -1,0 +1,697 @@
+{
+  "generatorVersion": 2,
+  "generatorSha256": "882cffc5d15cba818a183039e0127619efd38f101d2d3a38bbf85924572a0764",
+  "license": "Original UKUBOLA resources",
+  "files": [
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Wall_Base.png",
+      "sha256": "6211728e98cab896300bbab5fa5fc8df01ecfe6167f714bcfa652a94d801e137",
+      "seed": 1600,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Wall_Normal.png",
+      "sha256": "43463ee1192c0f5b74b70cccf195f4d43bea5dbde3c08522eb7cca829cc46492",
+      "seed": 1600,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Wall_Mask.png",
+      "sha256": "999a30c965662ce17e88fd268e58c40bc16e6577ea31e7cf6b596a8dd644dc09",
+      "seed": 1600,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Wall_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1600,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Floor_Base.png",
+      "sha256": "23cda98715a5f3994e9bfe696abe155320b423b0280897ddd9554b64db64ec56",
+      "seed": 1601,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Floor_Normal.png",
+      "sha256": "31d257c16e8dd4f7d92fc299548f3d0ecc69c3378985c54a4d86b802c3e7836f",
+      "seed": 1601,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Floor_Mask.png",
+      "sha256": "5a006cec04eeb37f50138fdb3e396d2d556e6bd1b2cd6f4cb9916adb9402517e",
+      "seed": 1601,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Floor_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1601,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Ceiling_Base.png",
+      "sha256": "9acc2a094507bf2d70df068b28a202cbf5bbddb6bcac318dbebe4b0ba6bbbef3",
+      "seed": 1602,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Ceiling_Normal.png",
+      "sha256": "db1e7f521e13ff6d229a06930f6fe2a1353d2f5d83ae3b5b35ef06a259e94ede",
+      "seed": 1602,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Ceiling_Mask.png",
+      "sha256": "96c13a97bc9ed3483ab0a5abcc7cd7e80e328e72dd55088d1b99aa835c31b6e9",
+      "seed": 1602,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Ceiling_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1602,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Trim_Base.png",
+      "sha256": "3cf45b076f5f90bb0e0d0fe812a1794f56f8c04f73fd9973d1c47cdbe4eaf33d",
+      "seed": 1603,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Trim_Normal.png",
+      "sha256": "40be96b3f35a72c6eee1236cee0654e332222a8f8ab7d3e7c0a803ea6795055d",
+      "seed": 1603,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Trim_Mask.png",
+      "sha256": "b4b7e66a61361001b7fe6103843e4fb5263f0cbf040be5fae9b328c4d81d81c1",
+      "seed": 1603,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Trim_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1603,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Crate_Base.png",
+      "sha256": "a31ec96b790103f8ea414455b005a29396ec6a33a6a06cb48ca773b312ee66a0",
+      "seed": 1604,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Crate_Normal.png",
+      "sha256": "9a9c0d8047782e54c13402f7043dac7b3bc68772644272147a21a26337953c4c",
+      "seed": 1604,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Crate_Mask.png",
+      "sha256": "2204f323a714550f89812b065e717a5e470ee69b9ffc09016da1e8164b49f477",
+      "seed": 1604,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Crate_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1604,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Console_Base.png",
+      "sha256": "e0b437cb2da53ccbf2ed2909b408e31bf46b3ad9a0701afa4cf505f4994c1f43",
+      "seed": 1605,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Console_Normal.png",
+      "sha256": "d14c0cc8108a1c833a434e7bc1a7f79a90a3728fdad5293dafbed15d5b300ace",
+      "seed": 1605,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Console_Mask.png",
+      "sha256": "6dbcfd4e6d6417553dd27a0383f1e5b66148f47d84b6573445c455d8f9266716",
+      "seed": 1605,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/0_Console_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1605,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Wall_Base.png",
+      "sha256": "e0e493a728ebebc0f0619e3717a6ac65769954fd18b8a3c33f6db930c410e6f9",
+      "seed": 1700,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Wall_Normal.png",
+      "sha256": "43463ee1192c0f5b74b70cccf195f4d43bea5dbde3c08522eb7cca829cc46492",
+      "seed": 1700,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Wall_Mask.png",
+      "sha256": "999a30c965662ce17e88fd268e58c40bc16e6577ea31e7cf6b596a8dd644dc09",
+      "seed": 1700,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Wall_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1700,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Floor_Base.png",
+      "sha256": "4fadf92c3571188c6839be0adbe2c76ddd80c12aede8b4c69db6a60ff15d5542",
+      "seed": 1701,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Floor_Normal.png",
+      "sha256": "31d257c16e8dd4f7d92fc299548f3d0ecc69c3378985c54a4d86b802c3e7836f",
+      "seed": 1701,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Floor_Mask.png",
+      "sha256": "5a006cec04eeb37f50138fdb3e396d2d556e6bd1b2cd6f4cb9916adb9402517e",
+      "seed": 1701,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Floor_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1701,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Ceiling_Base.png",
+      "sha256": "34d2c00d470170c12f3a30b9c672fbdfb76b41593f1e8de5982b8f908fcde2cb",
+      "seed": 1702,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Ceiling_Normal.png",
+      "sha256": "db1e7f521e13ff6d229a06930f6fe2a1353d2f5d83ae3b5b35ef06a259e94ede",
+      "seed": 1702,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Ceiling_Mask.png",
+      "sha256": "96c13a97bc9ed3483ab0a5abcc7cd7e80e328e72dd55088d1b99aa835c31b6e9",
+      "seed": 1702,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Ceiling_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1702,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Trim_Base.png",
+      "sha256": "3e026e9255d832bcc9d28c42d22cf681e32d44b3b98253f4d9ce74350822237b",
+      "seed": 1703,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Trim_Normal.png",
+      "sha256": "40be96b3f35a72c6eee1236cee0654e332222a8f8ab7d3e7c0a803ea6795055d",
+      "seed": 1703,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Trim_Mask.png",
+      "sha256": "b4b7e66a61361001b7fe6103843e4fb5263f0cbf040be5fae9b328c4d81d81c1",
+      "seed": 1703,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Trim_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1703,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Crate_Base.png",
+      "sha256": "3a372c4261067fde5b5631d033a2e5d68d13660f0baa105dc4197075e1af63b2",
+      "seed": 1704,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Crate_Normal.png",
+      "sha256": "9a9c0d8047782e54c13402f7043dac7b3bc68772644272147a21a26337953c4c",
+      "seed": 1704,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Crate_Mask.png",
+      "sha256": "2204f323a714550f89812b065e717a5e470ee69b9ffc09016da1e8164b49f477",
+      "seed": 1704,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Crate_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1704,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Console_Base.png",
+      "sha256": "200ff0b6776de8673fdbb90495c96a7d74a529ccb2ccb49e276421cf5f0af5bf",
+      "seed": 1705,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Console_Normal.png",
+      "sha256": "d14c0cc8108a1c833a434e7bc1a7f79a90a3728fdad5293dafbed15d5b300ace",
+      "seed": 1705,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Console_Mask.png",
+      "sha256": "6dbcfd4e6d6417553dd27a0383f1e5b66148f47d84b6573445c455d8f9266716",
+      "seed": 1705,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/1_Console_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1705,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Wall_Base.png",
+      "sha256": "945c4f320ebbf18d57c514a4e7e887568d03e97fe0fe0c98371dd1d2cfea0ca9",
+      "seed": 1800,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Wall_Normal.png",
+      "sha256": "43463ee1192c0f5b74b70cccf195f4d43bea5dbde3c08522eb7cca829cc46492",
+      "seed": 1800,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Wall_Mask.png",
+      "sha256": "999a30c965662ce17e88fd268e58c40bc16e6577ea31e7cf6b596a8dd644dc09",
+      "seed": 1800,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Wall_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1800,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Floor_Base.png",
+      "sha256": "0e851a93b12a0ac04db81a687871fa2452fafeba44b6b2aee55298713e9a4ca1",
+      "seed": 1801,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Floor_Normal.png",
+      "sha256": "31d257c16e8dd4f7d92fc299548f3d0ecc69c3378985c54a4d86b802c3e7836f",
+      "seed": 1801,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Floor_Mask.png",
+      "sha256": "5a006cec04eeb37f50138fdb3e396d2d556e6bd1b2cd6f4cb9916adb9402517e",
+      "seed": 1801,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Floor_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1801,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Ceiling_Base.png",
+      "sha256": "b693be19ec7914863cf445837a7450570d3125bc444fe37a6d59a3115e7cd7f8",
+      "seed": 1802,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Ceiling_Normal.png",
+      "sha256": "db1e7f521e13ff6d229a06930f6fe2a1353d2f5d83ae3b5b35ef06a259e94ede",
+      "seed": 1802,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Ceiling_Mask.png",
+      "sha256": "96c13a97bc9ed3483ab0a5abcc7cd7e80e328e72dd55088d1b99aa835c31b6e9",
+      "seed": 1802,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Ceiling_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1802,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Trim_Base.png",
+      "sha256": "aed24b31200f3b6773f240ba8b9254e277b6591c8f28edbaa33ece932ab7fdee",
+      "seed": 1803,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Trim_Normal.png",
+      "sha256": "40be96b3f35a72c6eee1236cee0654e332222a8f8ab7d3e7c0a803ea6795055d",
+      "seed": 1803,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Trim_Mask.png",
+      "sha256": "b4b7e66a61361001b7fe6103843e4fb5263f0cbf040be5fae9b328c4d81d81c1",
+      "seed": 1803,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Trim_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1803,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Crate_Base.png",
+      "sha256": "3da66773c4d8da6dea984d6e1720e8dc20f6a92436861e286ef9ebbb7d2db7f8",
+      "seed": 1804,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Crate_Normal.png",
+      "sha256": "9a9c0d8047782e54c13402f7043dac7b3bc68772644272147a21a26337953c4c",
+      "seed": 1804,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Crate_Mask.png",
+      "sha256": "2204f323a714550f89812b065e717a5e470ee69b9ffc09016da1e8164b49f477",
+      "seed": 1804,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Crate_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1804,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Console_Base.png",
+      "sha256": "96b7d3cebabc02fe345a9d968be7850b46ef50e07df4627cdaf149141ba2a0a0",
+      "seed": 1805,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Console_Normal.png",
+      "sha256": "d14c0cc8108a1c833a434e7bc1a7f79a90a3728fdad5293dafbed15d5b300ace",
+      "seed": 1805,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Console_Mask.png",
+      "sha256": "6dbcfd4e6d6417553dd27a0383f1e5b66148f47d84b6573445c455d8f9266716",
+      "seed": 1805,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/2_Console_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 1805,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Door_Base.png",
+      "sha256": "09b404e33b70d03031279b84896ab515d8d535b33d1ca2501785dcc3bbe1bd46",
+      "seed": 2000,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Door_Normal.png",
+      "sha256": "9b014613da46977c5437d4ef0ac63fd878dc0f56cb1f8b387a3b90eb0cb8605a",
+      "seed": 2000,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Door_Mask.png",
+      "sha256": "20c27e0de3ebebb3a80025a5e9d86af07e8bca352bda0ba6bb87a58056115391",
+      "seed": 2000,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Door_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 2000,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Weapon_Base.png",
+      "sha256": "4a887293a16f6fba6ad09f6bced2a1c3cc1c2fcd8046c1d9a542af4018189586",
+      "seed": 2001,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Weapon_Normal.png",
+      "sha256": "40be96b3f35a72c6eee1236cee0654e332222a8f8ab7d3e7c0a803ea6795055d",
+      "seed": 2001,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Weapon_Mask.png",
+      "sha256": "b4b7e66a61361001b7fe6103843e4fb5263f0cbf040be5fae9b328c4d81d81c1",
+      "seed": 2001,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Weapon_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 2001,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Armor_Base.png",
+      "sha256": "379ee00d1ed1a7e65be978cddf66b3162e8a7d7f8ac53e200b17c01ddfb21270",
+      "seed": 2002,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Armor_Normal.png",
+      "sha256": "30bf64062f62947b967934f467806fd95785c81d3c4abf36fe2506fea513d5de",
+      "seed": 2002,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Armor_Mask.png",
+      "sha256": "1d8f08fc96752b8c36f52341d8564844d8d1e06c588f51e7fdbcc1f1f64710e9",
+      "seed": 2002,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Armor_Emission.png",
+      "sha256": "dbd8e6235a1dba90a6d5e5199db421b6e9f037d56643d2ddec01b18afb7ae64a",
+      "seed": 2002,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardToxic_Base.png",
+      "sha256": "ebce6d520cbe5f0f55e4aef4708a0cd93fc92d58655762a114c73fe1b1b68c30",
+      "seed": 2003,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardToxic_Normal.png",
+      "sha256": "55b2331a9fe35d48973f690cde61c723f5dc50b8b19f43d95d509a1fb8c0cfa2",
+      "seed": 2003,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardToxic_Mask.png",
+      "sha256": "83e877f2072be155b1191823e170367359517449f236a5bb70856d46ef188cd2",
+      "seed": 2003,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardToxic_Emission.png",
+      "sha256": "1743fe807fb6f008682bb995f57c2cc39d23a1ef6439cd178305a9815edfe1b8",
+      "seed": 2003,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardHot_Base.png",
+      "sha256": "4423df60ddac55d13a0e9c3ef100ee0a90c16e9cb1f4934bb039566aa0a779b5",
+      "seed": 2004,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardHot_Normal.png",
+      "sha256": "55b2331a9fe35d48973f690cde61c723f5dc50b8b19f43d95d509a1fb8c0cfa2",
+      "seed": 2004,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardHot_Mask.png",
+      "sha256": "83e877f2072be155b1191823e170367359517449f236a5bb70856d46ef188cd2",
+      "seed": 2004,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardHot_Emission.png",
+      "sha256": "17071f564f2b951906e6a4e98fbd3f277805f2eab3490ff7757bc25455ddec76",
+      "seed": 2004,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardElectric_Base.png",
+      "sha256": "41e92908f3b48d17a7891a55e752d6e8b1e3c434e44e24735015082a76ac3a2c",
+      "seed": 2005,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Base"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardElectric_Normal.png",
+      "sha256": "55b2331a9fe35d48973f690cde61c723f5dc50b8b19f43d95d509a1fb8c0cfa2",
+      "seed": 2005,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Normal"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardElectric_Mask.png",
+      "sha256": "83e877f2072be155b1191823e170367359517449f236a5bb70856d46ef188cd2",
+      "seed": 2005,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Mask"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HazardElectric_Emission.png",
+      "sha256": "b390d6043d79bd45d5c8c7595fbfec6044cd673dcf78f8f1652fcd38d18f11ea",
+      "seed": 2005,
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "Emission"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Digits.png",
+      "sha256": "b10779a9e594c7946bb02493ce539ed73b89eac7fdeb9904aecd0e89c12fe58f",
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "UI"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/HudPanel.png",
+      "sha256": "ef6874548d4b253984b4e15eb066659644bfef97ab88ac9a30371eb625089e3f",
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "UI"
+    },
+    {
+      "path": "Assets/_UKUBOLA/Art/Evolution/Textures/Steam.png",
+      "sha256": "762c127019960e4e8fc42fe96701c499e8bc888593f75829805cbfb02575eaae",
+      "source": "Tools/Generate-UkubolaArt.py",
+      "kind": "VFX"
+    }
+  ]
+}

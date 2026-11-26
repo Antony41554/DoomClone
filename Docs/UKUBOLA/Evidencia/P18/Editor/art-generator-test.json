@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "python": "3.13.2",
+  "textures": 99,
+  "generatorSha256": "882cffc5d15cba818a183039e0127619efd38f101d2d3a38bbf85924572a0764",
+  "checks": [
+    "Two generations are byte-identical",
+    "99 expected textures",
+    "Manual edit rejects regeneration without altering any output"
+  ],
+  "evidence": "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\art-source-81aa54287061415c9f55e47eb6192191"
+}

@@ -1,0 +1,36 @@
+{
+    "success": true,
+    "mode": "capture",
+    "scene": "ArtRoom",
+    "error": "",
+    "device": "NVIDIA GeForce GTX 1650",
+    "unity": "6000.6.10f1",
+    "utc": "2026-11-26T15:46:39.6009999Z",
+    "captureMethod": "URP StandardRequest; live world and UI rendered at outputWidth/outputHeight; physical window reported separately",
+    "timingKind": "player-loop samples; static QA, not final gameplay benchmark",
+    "frames": 300,
+    "outputWidth": 2560,
+    "outputHeight": 1440,
+    "windowWidth": 1920,
+    "windowHeight": 1080,
+    "internalWidth": 960,
+    "internalHeight": 540,
+    "quality": 2,
+    "averageMs": 16.67438316345215,
+    "p95Ms": 16.70470428466797,
+    "p99Ms": 16.889598846435547,
+    "allocatedBytes": 191165543,
+    "captures": [
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\player-c477548b28fa45f99bd11c3081c9086d\\capture-00.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\player-c477548b28fa45f99bd11c3081c9086d\\capture-01.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\player-c477548b28fa45f99bd11c3081c9086d\\capture-02.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\player-c477548b28fa45f99bd11c3081c9086d\\capture-03.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\player-c477548b28fa45f99bd11c3081c9086d\\capture-04.png",
+        "C:\\Users\\Anthony\\Unity\\DoomClone\\Evidence\\Evolution\\player-c477548b28fa45f99bd11c3081c9086d\\capture-05.png"
+    ],
+    "snapshotRoundTrip": false,
+    "behaviorChecks": [
+        "CharacterController climbed 2.4m service stairs without jumping",
+        "Enemy navigation connects floor to upper walkway"
+    ]
+}

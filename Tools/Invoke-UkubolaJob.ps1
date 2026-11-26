@@ -1,5 +1,5 @@
 param(
-    [Parameter(Mandatory=$true)] [ValidateSet('Audit','SelfTests','RunEditTests','ValidateLegacy','BuildLegacy','RestoreBuildSettings','ReloadCheckpoint','Fail','PlayQa')] [string] $Operation,
+    [Parameter(Mandatory=$true)] [ValidateSet('Audit','SelfTests','RunEditTests','BuildArtRoom','BakeArtRoom','BuildArtPreview','BuildArtPreviewV2','ValidateLegacy','BuildLegacy','RestoreBuildSettings','ReloadCheckpoint','Fail','PlayQa')] [string] $Operation,
     [string] $Scene,
     [int] $TimeoutSeconds = 600
 )
