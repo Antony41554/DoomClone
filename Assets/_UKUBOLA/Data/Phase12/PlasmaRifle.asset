@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9361b988084a294ab7505c9c586da3c, type: 3}
+  m_Name: PlasmaRifle
+  m_EditorClassIdentifier: Assembly-CSharp::Ukubola.Combat.WeaponDefinition
+  weapon: 6
+  ammo: 3
+  ammoCost: 1
+  pellets: 1
+  interval: 0.16
+  spread: 0
+  range: 60
+  idle: {fileID: 2800000, guid: bad036daeb26d4e40b66d290249dee3d, type: 3}
+  firing: {fileID: 2800000, guid: ec2f5029ceeac6242ab2b954bda367c0, type: 3}
+  mode: 2
+  fixedDamage: 15
+  projectileSpeed: 19
+  blastRadius: 0

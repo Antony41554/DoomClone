@@ -1,0 +1,286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3604346742064883136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2859939516503335399}
+  - component: {fileID: 7738369999929490698}
+  - component: {fileID: 5268074314605339376}
+  - component: {fileID: 3923712594662528633}
+  - component: {fileID: 8914348776160621535}
+  - component: {fileID: 7365712520989946851}
+  - component: {fileID: 8159393911827696507}
+  - component: {fileID: 8377189794188405627}
+  m_Layer: 10
+  m_Name: Imp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2859939516503335399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604346742064883136}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 203065604090230597}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7738369999929490698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604346742064883136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fdd9a95781d6940ae629455edeab6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ukubola.Combat.Health
+  maxHealth: 60
+  armor: {fileID: 0}
+--- !u!136 &5268074314605339376
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604346742064883136}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.32
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!195 &3923712594662528633
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604346742064883136}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.35
+  m_Speed: 2.8
+  m_Acceleration: 12
+  avoidancePriority: 50
+  m_AngularSpeed: 360
+  m_StoppingDistance: 1.8
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.7
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8914348776160621535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604346742064883136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a73b5f74986d55d4a97179d21eff539b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ukubola.Enemies.EnemyMotor
+--- !u!114 &7365712520989946851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604346742064883136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f9eb659a9291947a0f6ad9d0725ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ukubola.Enemies.EnemyAttack
+  projectilePrefab: {fileID: 8740429365953737795, guid: efb1579ae31ad34408579a8b40e10a40, type: 3}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 9985
+--- !u!114 &8159393911827696507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604346742064883136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3b51924614898419bf06d9aa5daf02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ukubola.Enemies.EnemySpriteView
+  visual: {fileID: 7446262089663730757}
+  billboard: {fileID: 3421942274429332267}
+  idle:
+  - {fileID: 21300000, guid: d936a5e29f035fc4784d079a1948895b, type: 3}
+  - {fileID: 21300000, guid: 10ba8ac5e1cae904285ef363fe2dbc7d, type: 3}
+  - {fileID: 21300000, guid: 83480a56fefacb041a5585cf28651a33, type: 3}
+  - {fileID: 21300000, guid: d2f8f6e960070994ebcb7d48a2f6b9d5, type: 3}
+  - {fileID: 21300000, guid: 893a8881848607c458ffbc479cd2e66d, type: 3}
+  - {fileID: 21300000, guid: b01b6a33b2d32e1409769c5cb698100b, type: 3}
+  - {fileID: 21300000, guid: 5d3bd29115b7868498cb91f7eaeef79a, type: 3}
+  - {fileID: 21300000, guid: a986f632eb9e59f439d05f0b14ae5ca7, type: 3}
+  walk:
+  - {fileID: 21300000, guid: 62070e293329b6142ae8aa8b609e79ff, type: 3}
+  - {fileID: 21300000, guid: 7a108c20a4bd8014a999b50a5cd5474d, type: 3}
+  - {fileID: 21300000, guid: 6c9549be1ddc65d41b9b846154cad779, type: 3}
+  - {fileID: 21300000, guid: 6488c6503965f3c4a835c3d4945d9a2e, type: 3}
+  - {fileID: 21300000, guid: 6adac3e12e9644e48929e6fd2091dd8e, type: 3}
+  - {fileID: 21300000, guid: 74ca83a0d213aae4196d3e9a428887ed, type: 3}
+  - {fileID: 21300000, guid: ccdea2cb29267f9479d814bd21cc60fd, type: 3}
+  - {fileID: 21300000, guid: bf45f11bf58257140a9b2f5a70872a29, type: 3}
+  attack: {fileID: 21300000, guid: ed1a43b86c19f4847b1cf52f375feb5b, type: 3}
+  pain: {fileID: 21300000, guid: 54fe6b22946224d429deb7129e0ee84f, type: 3}
+  dead: {fileID: 21300000, guid: e28a95ac0e37b374c970680e6bf06403, type: 3}
+--- !u!114 &8377189794188405627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604346742064883136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be575070e052034cb7254c656a391b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ukubola.Enemies.EnemyBrain
+  definition: {fileID: 11400000, guid: a8f5bd89a2c038f45a91b09edb763618, type: 2}
+  target: {fileID: 0}
+  viewer: {fileID: 0}
+  noise: {fileID: 0}
+  navigation: {fileID: 0}
+--- !u!1 &7231048284920821177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 203065604090230597}
+  - component: {fileID: 7446262089663730757}
+  - component: {fileID: 3421942274429332267}
+  m_Layer: 10
+  m_Name: Visual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &203065604090230597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231048284920821177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2859939516503335399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &7446262089663730757
+SpriteRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231048284920821177}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 40e444a69a9f27146aa22d20f3be0426, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: d936a5e29f035fc4784d079a1948895b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.2, y: 1.6}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
+--- !u!114 &3421942274429332267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231048284920821177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da2aee0f883e9542a78a22529694303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ukubola.Rendering.Billboard
+  viewer: {fileID: 0}

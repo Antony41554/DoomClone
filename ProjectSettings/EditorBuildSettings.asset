@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Menus/MainMenu.unity
+    guid: 58fbea261382f1f40aff377a286f5763
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Tests/MenuLab.unity
+    guid: f6b4dbf4c18e9824b92e0403d5e6a672
+  - enabled: 1
+    path: Assets/Scenes/DoomCLon.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Menus/MvpTitle.unity
+    guid: f203c22e8dbb47b4db9f5ffe0e796240
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Levels/E1M1_TheOutpost.unity
+    guid: 1c523f2a2daac6b46add9966013e743e
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Menus/AdvancedTitle.unity
+    guid: e34e38cc47ccf044bb9d1ae263bdd8aa
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Levels/E1M1_Advanced.unity
+    guid: a8d762403ae846649b743094c426f8bb
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Menus/CampaignTitle.unity
+    guid: 3fab912815021f345a3017d8cc8fbe5a
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Levels/E1M1_Campaign.unity
+    guid: eaa65bde13f31ca43959dc85286eb76f
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Levels/E1M2_TheFoundry.unity
+    guid: a1f1d940549b78444bfc775a06b5b6ab
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Levels/E1M3_TheCore.unity
+    guid: 59f5cfc43067a1141beedf782593dd44
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Menus/SaveCampaignTitle.unity
+    guid: cd69a2b1b85f27a47bcb77d3b635c8a0
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Levels/E1M1_Save.unity
+    guid: 32255a4bcd53d884a984a2c9cd92c905
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Levels/E1M2_Save.unity
+    guid: 0813527aa1e59624696ddca4bc0a8d3b
+  - enabled: 1
+    path: Assets/_UKUBOLA/Scenes/Levels/E1M3_Save.unity
+    guid: 0da3c682118120a4c9fbe6944c1dd939
+  m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
