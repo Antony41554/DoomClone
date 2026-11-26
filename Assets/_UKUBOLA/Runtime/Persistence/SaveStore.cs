@@ -9,7 +9,7 @@ namespace Ukubola.Persistence
     {
         [Serializable] private sealed class Envelope { public string payload,sha256; }
         private const int MaxBytes=1024*1024;
-        public static string Folder=>Path.Combine(Application.persistentDataPath,"UKUBOLA","Saves");
+        public static string Folder=>QaEnvironment.Active ? QaEnvironment.SaveFolder : Path.Combine(Application.persistentDataPath,"UKUBOLA","Saves");
         public static string FilePath=>Path.Combine(Folder,"campaign-v1.json");
         public static SaveData Pending {get;set;}
         public static bool AutoSavePending {get;set;}

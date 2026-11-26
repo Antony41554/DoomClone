@@ -17,12 +17,12 @@ namespace Ukubola.UI
         }
         public static MenuPreferences Load()
         {
-            return new MenuPreferences { Music=PlayerPrefs.GetFloat(Prefix+"Music",1), Effects=PlayerPrefs.GetFloat(Prefix+"Effects",1), Sensitivity=PlayerPrefs.GetFloat(Prefix+"Sensitivity",1), Fullscreen=PlayerPrefs.GetInt(Prefix+"Fullscreen",0)==1 }.Normalized();
+            return new MenuPreferences { Music=QaEnvironment.GetFloat(Prefix+"Music",1), Effects=QaEnvironment.GetFloat(Prefix+"Effects",1), Sensitivity=QaEnvironment.GetFloat(Prefix+"Sensitivity",1), Fullscreen=QaEnvironment.GetInt(Prefix+"Fullscreen",0)==1 }.Normalized();
         }
         public void Save()
         {
-            var p=Normalized(); PlayerPrefs.SetFloat(Prefix+"Music",p.Music); PlayerPrefs.SetFloat(Prefix+"Effects",p.Effects);
-            PlayerPrefs.SetFloat(Prefix+"Sensitivity",p.Sensitivity); PlayerPrefs.SetInt(Prefix+"Fullscreen",p.Fullscreen?1:0); PlayerPrefs.Save();
+            var p=Normalized(); QaEnvironment.SetFloat(Prefix+"Music",p.Music); QaEnvironment.SetFloat(Prefix+"Effects",p.Effects);
+            QaEnvironment.SetFloat(Prefix+"Sensitivity",p.Sensitivity); QaEnvironment.SetInt(Prefix+"Fullscreen",p.Fullscreen?1:0); QaEnvironment.SavePreferences();
         }
     }
 

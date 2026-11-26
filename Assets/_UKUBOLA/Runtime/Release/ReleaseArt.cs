@@ -25,8 +25,8 @@ namespace Ukubola.Release
         private const string Key="UKUBOLA.P15.Quality";
         public const int Default=1;
         public static int Normalize(int value)=>Mathf.Clamp(value,0,2);
-        public static int Read()=>Normalize(PlayerPrefs.GetInt(Key,Default));
-        public static void Write(int value){PlayerPrefs.SetInt(Key,Normalize(value));PlayerPrefs.Save();}
+        public static int Read()=>Normalize(QaEnvironment.GetInt(Key,Default));
+        public static void Write(int value){QaEnvironment.SetInt(Key,Normalize(value));QaEnvironment.SavePreferences();}
         public static Vector2Int Size(int q)=>Normalize(q)==0?new Vector2Int(320,200):Normalize(q)==1?new Vector2Int(480,300):new Vector2Int(640,400);
         public static string Label(int q)=>Normalize(q)==0?"CLASSIC":Normalize(q)==1?"MODERN":"ULTRA";
         public static int LightLimit(int q)=>Normalize(q)==0?4:8;
