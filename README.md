@@ -17,7 +17,9 @@ La entrega del 26 de noviembre de 2026 reúne una nueva sección industrial de *
 
 ## Jugar
 
-La distribución Windows se entregará como ZIP en GitHub Releases cuando termine su verificación. Extraer completamente antes de ejecutar. La preview y la campaña original deben conservar sus carpetas de datos independientes.
+Descargar el [ZIP Windows x64 (161 MB)](https://github.com/Antony41554/DoomClone/releases/download/evolution-preview-2026-11-26/UKUBOLA_EvolutionPreview_2026-11-26_Windows_x64.zip) o consultar la [release con hashes y validación](https://github.com/Antony41554/DoomClone/releases/tag/evolution-preview-2026-11-26). Extraer completamente y ejecutar `Play_Outpost.cmd` o `Play_Original_Campaign.cmd`. La preview y la campaña original conservan sus carpetas de datos independientes.
+
+Las fuentes de la evolución están en `codex/ukubola-evolution`; `main` permanece sin cambios por indicación del propietario.
 
 | Control | Acción |
 |---|---|
@@ -54,6 +56,8 @@ Usar Unity **6000.6.10f1**, conservando `Packages/manifest.json` y `packages-loc
 ## Estado verificable
 
 31 pruebas EditMode correctas; cuatro perfiles/aspectos en Windows con 24 capturas y nueve comprobaciones runtime por caso; recorrido Windows completado con equipamiento inicial, enemigos activos, daño normal, ambas armas, secreto, escalera/elevador, carga, salida y muerte/reintento. Dos generaciones consecutivas conservan identidades, colocaciones, geometría estática y cantidades. Menú inicial y opciones comprobados visualmente; la revisión manual de teclado/cursor se interrumpió al detener el usuario el control gráfico.
+
+El ZIP pasó CRC y hashes de 441 archivos. Ambos ejecutables se probaron desde lo extraído y el ZIP descargado de GitHub coincide byte por byte con el validado localmente. SHA256: `f4c337f8c220ebf18c179739af347d7dd303278f24d1a0e8e5ff377e27d43509`.
 
 El recorrido automático conoce la ruta y dura aproximadamente un minuto; no demuestra la duración de una primera exploración de 5–8 minutos. Las muestras del Editor no certifican 60 FPS en el ejecutable. La evaluación visual 4/5 del plan, la revisión auditiva, reasignación/accesibilidad/automapa nuevos y la regresión completa de campaña en tres dificultades siguen pendientes.
 

@@ -30,3 +30,9 @@ No se reducen los criterios que evitan pérdida de guardados, duplicaciones, pue
 - Primer push de checkpoints a codex/ukubola-evolution: correcto. Main sigue en baee6d2 hasta el cierre verificado.
 
 Pendiente antes de publicar el ZIP: pruebas Windows de componentes y recorrido, extracción/hash, ejecución desde lo extraído y registro de las limitaciones reales. No considerar terminado el producto completo por cumplir este cierre reducido.
+
+## Resultado del cierre
+
+Publicado el 26/11/2026 a las 12:36 de Lima. Release https://github.com/Antony41554/DoomClone/releases/tag/evolution-preview-2026-11-26; rama codex/ukubola-evolution, código 0111687. Main permanece intacta por decisión explícita del usuario.
+
+Se completaron matriz Windows, ruta real, CRC/extracción/hash, ejecución de ambos players extraídos y descarga de GitHub con hash idéntico. El ZIP incluye instrucciones, dos lanzadores, manifiesto, créditos y avisos de paquetes. Los archivos de validación/hashes acompañan la release. Persisten las limitaciones documentadas de preview y la interrupción de la revisión gráfica por Escape; no se convierten en pruebas aprobadas por cumplir el horario.

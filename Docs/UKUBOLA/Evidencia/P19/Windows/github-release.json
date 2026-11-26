@@ -1,0 +1,32 @@
+{
+  "tag": "evolution-preview-2026-11-26",
+  "commit": "01116871f116c4c837726154b864b5c14a6f0fd6",
+  "mode": "Publish",
+  "success": true,
+  "assets": [
+    {
+      "name": "UKUBOLA_EvolutionPreview_2026-11-26_Windows_x64.sha256.txt",
+      "size": 119,
+      "digest": "sha256:ee098b79c923958ad95d115d6f3b5b0e6f61f5c75756782b673d345125855c22",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Antony41554/DoomClone/releases/download/evolution-preview-2026-11-26/UKUBOLA_EvolutionPreview_2026-11-26_Windows_x64.sha256.txt"
+    },
+    {
+      "name": "UKUBOLA_EvolutionPreview_2026-11-26_Windows_x64.validation.json",
+      "size": 8371,
+      "digest": "sha256:fcf734461d19547bcccef46813a073c853e06cf8311175b371ed37f5c4f8d62f",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Antony41554/DoomClone/releases/download/evolution-preview-2026-11-26/UKUBOLA_EvolutionPreview_2026-11-26_Windows_x64.validation.json"
+    },
+    {
+      "name": "UKUBOLA_EvolutionPreview_2026-11-26_Windows_x64.zip",
+      "size": 161127806,
+      "digest": "sha256:f4c337f8c220ebf18c179739af347d7dd303278f24d1a0e8e5ff377e27d43509",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Antony41554/DoomClone/releases/download/evolution-preview-2026-11-26/UKUBOLA_EvolutionPreview_2026-11-26_Windows_x64.zip"
+    }
+  ],
+  "url": "https://github.com/Antony41554/DoomClone/releases/tag/evolution-preview-2026-11-26",
+  "releaseId": 459726964,
+  "draft": false
+}

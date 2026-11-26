@@ -4,7 +4,9 @@ Entrega para Windows x64: nueva sección industrial de The Outpost y campaña or
 
 Outpost incorpora personajes/armas 3D, renderizado retro de píxeles cuadrados, iluminación industrial, pistola y escopeta, siete enemigos, puertas, tarjeta, interruptor remoto, elevador, refrigerante drenable, barriles, secreto, emboscada y objetivos. F5 guarda y F9 carga. La pantalla inicial mantiene el juego en pausa hasta comenzar; hay opciones básicas de calidad, aspecto, FOV y sensibilidad.
 
-Verificado: 31 EditMode, cuatro perfiles/aspectos en Windows, nueve comprobaciones runtime por perfil, recorrido completo con equipo y daño normales, y conservación del guardado v1. El ZIP y sus dos ejecutables extraídos deben superar sus comprobaciones antes de publicar esta release; la validación adjunta registra esos resultados.
+Verificado: 31 EditMode, cuatro perfiles/aspectos en Windows, nueve comprobaciones runtime por perfil, recorrido completo con equipo y daño normales, y conservación del guardado v1. El ZIP pasó CRC y hashes de sus 441 archivos; Outpost completó la ruta desde lo extraído y el ejecutable anterior cargó una copia v1. La validación adjunta registra esos resultados. Se adjunta SHA256 para comprobar la descarga.
+
+Fuentes de esta entrega en [codex/ukubola-evolution](https://github.com/Antony41554/DoomClone/tree/codex/ukubola-evolution). La rama `main` se conserva sin cambios por indicación del propietario.
 
 Esta es una **preview**, no la reconstrucción final P16–P27. Se aplazan las otras misiones modernizadas, el acabado del arsenal completo, reasignación/accesibilidad/automapa, revisión auditiva y regresión/optimización exhaustiva. La ruta automática conoce el camino y no demuestra una primera exploración de 5–8 minutos ni el benchmark P26 de tres minutos por misión. La revisión manual de teclado/cursor se interrumpió al detener el usuario el control gráfico.
 

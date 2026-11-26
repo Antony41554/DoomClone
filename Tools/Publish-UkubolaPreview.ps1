@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('CheckAccess','Draft','Publish')] [string] $Mode='CheckAccess',
+    [ValidateSet('CheckAccess','Draft','Publish','Verify')] [string] $Mode='CheckAccess',
     [string] $AssetManifest,
     [string] $Commit,
     [string] $Notes,
@@ -44,9 +44,51 @@ try {
         $body=@{tag_name=$Tag;target_commitish=$Commit;name='UKUBOLA — Outpost Evolution Preview (Windows x64)';body=(Get-Content -LiteralPath $Notes -Raw);draft=$true;prerelease=$true} | ConvertTo-Json -Depth 5
         $release=Invoke-RestMethod -Uri ($api+'/releases') -Headers $headers -Method Post -ContentType 'application/json' -Body ([Text.Encoding]::UTF8.GetBytes($body))
     } else { $release=$release[0] }
-    if (-not $release.draft) { throw 'Existing published release is preserved; choose a new tag' }
     if ($ReleaseId -gt 0 -and $release.id -ne $ReleaseId) { throw 'Release ID does not match the prepared draft' }
     if ($release.target_commitish -ne $Commit) { throw 'Draft source commit does not match the verified package' }
+    if ($Mode -eq 'Verify') {
+        if ($release.draft) { throw 'Release is not published' }
+        foreach ($asset in $manifest.assets) {
+            $remote=@($release.assets | Where-Object name -eq $asset.name)
+            if ($remote.Count -ne 1 -or $remote[0].state -ne 'uploaded' -or $remote[0].digest -ne ('sha256:'+$asset.sha256)) { throw 'Published release asset differs' }
+        }
+        $zip=@($release.assets | Where-Object name -Like '*.zip')
+        if ($zip.Count -ne 1) { throw 'Expected one preview ZIP' }
+        $downloadRoot=Join-Path $projectRoot ('Evidence/Evolution/github-download-'+[Guid]::NewGuid().ToString('N'))
+        New-Item -ItemType Directory -Path $downloadRoot | Out-Null
+        $downloadPath=Join-Path $downloadRoot $zip[0].name
+        # First request carries authentication only to api.github.com. Follow its
+        # asset redirect with another client that has no Authorization header.
+        $handler=[Net.Http.HttpClientHandler]::new();$handler.AllowAutoRedirect=$false
+        $client=[Net.Http.HttpClient]::new($handler);$client.Timeout=[TimeSpan]::FromMinutes(10)
+        $request=[Net.Http.HttpRequestMessage]::new([Net.Http.HttpMethod]::Get,($api+'/releases/assets/'+$zip[0].id))
+        $request.Headers.TryAddWithoutValidation('Authorization',$headers.Authorization) | Out-Null
+        $request.Headers.TryAddWithoutValidation('Accept','application/octet-stream') | Out-Null
+        $request.Headers.TryAddWithoutValidation('User-Agent','UKUBOLA-local-release') | Out-Null
+        $request.Headers.TryAddWithoutValidation('X-GitHub-Api-Version','2026-03-10') | Out-Null
+        $response=$null;$anonymous=$null;$destination=$null
+        try {
+            $response=$client.SendAsync($request,[Net.Http.HttpCompletionOption]::ResponseHeadersRead).GetAwaiter().GetResult()
+            if ([int]$response.StatusCode -ge 300 -and [int]$response.StatusCode -lt 400) {
+                $location=$response.Headers.Location
+                if (-not $location.IsAbsoluteUri -or $location.Scheme -ne 'https' -or -not ($location.Host.EndsWith('.githubusercontent.com') -or $location.Host.EndsWith('.amazonaws.com'))) { throw 'Unexpected asset download redirect' }
+                $anonymous=[Net.Http.HttpClient]::new();$anonymous.Timeout=[TimeSpan]::FromMinutes(10)
+                $response.Dispose();$response=$anonymous.GetAsync($location,[Net.Http.HttpCompletionOption]::ResponseHeadersRead).GetAwaiter().GetResult()
+            }
+            $response.EnsureSuccessStatusCode() | Out-Null
+            $destination=[IO.File]::Open($downloadPath,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write)
+            $null=$response.Content.CopyToAsync($destination).GetAwaiter().GetResult();$destination.Dispose();$destination=$null
+        } finally {
+            if ($destination) { $destination.Dispose() };if ($response) { $response.Dispose() };if ($anonymous) { $anonymous.Dispose() };$request.Dispose();$client.Dispose();$handler.Dispose()
+        }
+        $downloadSha=(Get-FileHash -LiteralPath $downloadPath -Algorithm SHA256).Hash.ToLowerInvariant()
+        if ('sha256:'+$downloadSha -ne $zip[0].digest) { throw 'Downloaded GitHub ZIP hash differs' }
+        $verified=@{success=$true;releaseId=$release.id;url=$release.html_url;draft=$release.draft;downloadSha256=$downloadSha;downloadBytes=(Get-Item -LiteralPath $downloadPath).Length;commit=$Commit}
+        $verified | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $downloadRoot 'result.json') -Encoding utf8
+        $verified | ConvertTo-Json
+        exit 0
+    }
+    if (-not $release.draft) { throw 'Existing published release is preserved; choose a new tag' }
     foreach ($asset in $manifest.assets) {
         $existing=@($release.assets | Where-Object name -eq $asset.name)
         if ($Mode -eq 'Draft' -and $existing.Count -eq 0) {
