@@ -83,3 +83,9 @@ Build final de preview ce6183dd567b46e2a9edb5be4550192e correcto (273 s). Matriz
 - Descarga posterior github-download-f712a930521a4453bd682c36444b20d8: 161127806 bytes y SHA256 idéntico al ZIP local probado.
 
 La entrega reducida queda disponible; no es la finalización del plan completo. Última fase íntegramente aceptada: P18 técnica; P19 tiene preview funcional, con acabado/duración/escucha/revisión manual pendientes. Próximo trabajo, si se retoma el plan: validar entrada/teclado/cursor en un entorno normal, revisar visualmente las seis dimensiones y ampliar la sección antes de P20. Leer D016/D017: mantener main intacta y no reanudar Computer Use sin nueva autorización del usuario.
+
+### Comprobación final de partidas activas
+
+La última comprobación encuentra los slots v1 activos distintos de la instantánea inicial. Investigación: el Editor registra entrada nueva E1M1 con equipo inicial y `MenuFlow.LateUpdate -> WriteSave` a las 17:33:31 UTC. La prueba del ejecutable extraído cargó la copia E1M3 y no registra escritura de producción. No había un trabajo Play de la cola en ese momento. La atribución inicial a la prueba automática era incorrecta.
+
+No se restauró ni sobrescribió el progreso activo. La primaria actual tiene SHA256 8b2d7cb62e84d746905e1282c575b9c52001bdbe1566af08beb889e19f2c3be8; su .bak conserva exactamente la primaria original cc1c7af1c796256fdb97dd31285c0087517b25ba3b3a0cb31b143b56966a2630. La instantánea inicial conserva además el respaldo original 9be0dfa261c1844c76c06b7b8e47b0e7290c2ca6e36dec96dcd6f3757fd9cb55. Copia de las dos versiones activas: Evidence/Evolution/save-change-audit-18c49b61569c43e49b5c91174f0b9c84. El verificador estricto seguirá indicando diferencia de slots activos; no ocultar ese resultado ni restaurar sobre una partida posterior sin revisar su origen. Los 2203 archivos y dos guardados de la copia inicial siguen intactos.
